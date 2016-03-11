@@ -3,6 +3,10 @@ title: $:/bj/closedlist/listview
 \define parentappend(y) $y$$(parentTiddler)$
 
 <div class="tc-taglist">
+<$button  class="tc-btn-invisible">
+	{{$:/core/images/delete-button}}
+	<$bj-action-deletetiddler $tiddler=<<parentTiddler>> $subtiddler=<<currentTiddler>>/>
+</$button>
 <$linkcatcher  message="refresh" to=<<parentappend "$:/temp/priv/">>  >
 <$reveal state=<<parentappend "$:/temp/priv/">> text={{!!title}} type="match">
     <$link to=""><$view field="title"/></$link>

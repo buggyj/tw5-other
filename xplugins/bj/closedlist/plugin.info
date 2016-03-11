@@ -1,10 +1,11 @@
 {
 	"title": "$:/plugins/bj/closedlist",
 	"description": "view and edit subtiddlers lists",
-	"author": "JeffreyWilkinson",
+	"author": "JeffreyWilkinson aka bj",
+	"tags": "needs:/plugins/bj/flexitype",
 	"version": "1.11.0",
-	"list": "license",
+	"list": "license readme",
 	"core-version": ">=5.1.11",
-	"source": "https://github.com/buggyj/TW5-xperimental",
+	"source": "https://github.com/buggyj/TW5-other",
 	"plugin-type": "plugin"
 }

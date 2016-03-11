@@ -9,5 +9,6 @@
 		"doNotSave": [
 	],
 	"includeWikis": [
+		"../extlibs"
 	]
 }
