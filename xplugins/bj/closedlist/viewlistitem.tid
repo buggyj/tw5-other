@@ -17,6 +17,6 @@ title: $:/bj/closedlist/listview
 </$linkcatcher>
 </div>
 <$reveal state=<<parentappend "$:/temp/priv/">> text={{!!title}} type="match">
-    <$transclude tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>>mode="block">
+    <$transclude tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>>mode="block"/>
+source is <$transclude tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>> field="source"/>
 </$reveal>
-</$linkcatcher>
