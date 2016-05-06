@@ -1,4 +1,5 @@
 output/
-$__StoryList.tid/
-xplugins/bj/closedlist/build/extlibs/tiddlers
-xplugins/bj/closedlist/build/playground/tiddlers
+$__StoryList.tid
+**/build/extlibs/tiddlers/
+**/build/playground/tiddlers/
+xeditions/playground/browser/tiddlers/
