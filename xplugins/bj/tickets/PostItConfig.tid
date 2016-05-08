@@ -1,0 +1,13 @@
+changecount: 1
+created: 20160406092528266
+creator: Your Name
+modified: 20160505063323026
+modifier: Your Name
+tags: tclocal patch
+title: PostItConfig
+type: null
+
+\rules only table wikilink prettylink
+
+|!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes |
+|Not Used||postit|{"#totaltitle":"((*@current*))->Postit"}, { "#leaftitle": "((*@newleaftitle(#totaltitle)*))" }, {"$title": "Draft of '((*@current*))->((*#leaftitle*))'" }, {"$draft.of":"((*@current*))->((*#leaftitle*))"}, {"$draft.title":"((*#leaftitle*))"}, {"$applicationtype":"postit"}, {"$text":""}||inc add open|

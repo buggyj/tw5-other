@@ -1,0 +1,49 @@
+created: 20160506083232149
+modified: 20160508052045565
+tags: 
+title: TemplaTes
+type: text/vnd.tiddlywiki
+
+## Possible Improvement
+
+----
+[[$:/bj/postit/EditTemplate]]
+
+[[$:/bj/postit/ViewTemplate]]
+
+[[$:/bj/postit/ViewTemplate/details]]
+
+[[$:/config/EditTemplateTypeMappings/postit]]
+
+[[$:/config/ViewTemplateTypeMappings/postit]]
+
+
+----
+[[$:/bj/ticket/EditTemplate/details]]
+
+[[$:/bj/ticket/EditTemplate]]
+
+[[$:/bj/ticket/ViewTemplate]]
+
+[[$:/bj/ticket/ViewTemplate/details]]
+
+[[$:/config/EditTemplateTypeMappings/ticket]]
+
+[[$:/config/ViewTemplateTypeMappings/ticket]]
+
+----
+[[$:/config/ViewTemplateTypeMappings/closedlist]]
+
+[[$:/config/EditTemplateTypeMappings/closedlist]]
+
+[[$:/bj/closedlist/ViewTemplate/body/changer]]
+
+[[$:/bj/closedlist/EditTemplate/body/changer]]
+
+[[$:/bj/closedlist/ViewTemplate/body/list]]
+
+[[$:/bj/closedlist/EditTemplate/body/list]]
+
+[[$:/bj/closedlist/listview]]
+
+[[$:/bj/closedlist/listedit]]

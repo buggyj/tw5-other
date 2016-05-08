@@ -1,0 +1,15 @@
+caption: Tickets
+created: 20160506154714276
+modified: 20160506205234409
+tags: ToC
+title: Ticket
+type: text/vnd.tiddlywiki
+
+<$createclip>
+<$button>
+create new Ticket
+<$action-tiddlydo  $tabletid="New Items" $catname="Ticket" parentTicket="Ticket"/>
+</$button>
+</$createclip>
+<ul><$list filter="[tag<currentTiddler>]" class='btn btn-primary'>
+<li>{{!!title||listtickettemplate}}</li></$list></ul>

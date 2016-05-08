@@ -1,0 +1,47 @@
+created: 20160508051226716
+modified: 20160508115557113
+tags: patch
+title: $:/bj/ticket/EditTemplate/details
+type: text/vnd.tiddlywiki
+
+\define currentappend(y) $y$$(currentTiddler)$
+<$set name="parentTiddler" value=<<currentTiddler>>> 
+
+<<tabsheader "[[Info]] [[Postits]] [[Logs]] [[Clips]] [[SubTickets]]" "Info">>
+<!---------------------------------------------------------------------------------------------------------------->
+<$reveal type='match' state=<<currentappend '$:/state/tab'>> default='Info' text='Info'>
+
+ <table> 
+  <tr>
+    <td>Description</td>
+    <td><$edit-text field="description" tag="textarea"/></td>
+  </tr>
+  <tr>
+    <td>Function</td>
+    <td><$edit-text field="function"/></td>
+  </tr>
+  <tr>
+    <td>Caption</td>
+    <td><$edit-text field="caption"/></td>
+  </tr>
+  <tr>
+    <td>Tccaption</td>
+    <td><$edit-text field="tccaption"/></td>
+  </tr>
+</table>
+
+</$reveal>
+<!---------------------------------------------------------------------------------------------------->
+<$reveal type='match' state=<<currentappend '$:/state/tab'>> default='Info' text='Postits'>
+
+<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listedit" subfilter:"tagsub[postit]">>
+</$reveal>
+<!---------------------------------------------------------------------------------------------------->
+<$reveal type='match' state=<<currentappend '$:/state/tab'>> default='Info' text='Logs'>
+<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listedit" subfilter:"tagsub[log]">>
+</$reveal>
+<!---------------------------------------------------------------------------------------------------->
+<$reveal type='match' state=<<currentappend '$:/state/tab'>> default='Info' text='Clips'>
+<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listedit" subfilter:"tagsub[clip]">>
+</$reveal>
+</$set>

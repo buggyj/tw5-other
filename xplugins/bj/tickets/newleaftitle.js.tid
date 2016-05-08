@@ -1,0 +1,42 @@
+created: 20160404183253328
+modified: 20160505062802949
+module-type: library
+tags: $:/tags/tiddlyclip patch
+title: newleaftitle.js
+type: application/javascript
+
+var getMultiTidTitle = function(title){
+		var p = title.indexOf("->"), container, tid;
+		if(p !== -1) {
+			container = title.substr(0, p).trim();
+			tid = title.substr(p+2).trim();
+		} else {
+			tid = title;
+		}
+		return {container:container, title:tid};
+	}
+
+var tiddlerExists= function(tidname) {
+		var tiddler = getMultiTidTitle(tidname);
+		if(tiddler.container) {
+			tiddler = $tw.wiki.getSubTiddler(tiddler.container,tiddler.title);
+		} else {
+			tiddler = $tw.wiki.getTiddler(tiddler.title);
+		}
+			return(!!tiddler);
+	}
+
+
+exports.name ="newleaftitle";
+exports.run  = function(baseTitle,options) {
+		options = options || {};
+		var c = 0,
+                        multitid,
+			title = baseTitle;
+		while(tiddlerExists(title) ) {
+			title = baseTitle + 
+				(options.prefix || "-") + 
+				(++c);
+		}
+		return getMultiTidTitle(title).title;
+}

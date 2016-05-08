@@ -1,0 +1,13 @@
+changecount: 1
+created: 20160408065159128
+creator: Your Name
+modified: 20160505062835590
+modifier: Your Name
+tags: tclocal patch
+title: SavePostit
+type: null
+
+\rules only table wikilink prettylink 
+
+|!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes |
+|$:/.bj/notused|editme|testpostit|{"#msg":"htesting"},{ "#leaftitle": "((*@alert(#msg)*))" }||inc add open|

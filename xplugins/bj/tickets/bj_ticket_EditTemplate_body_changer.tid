@@ -1,0 +1,24 @@
+created: 20160406061819280
+modified: 20160508114714067
+tags: patch
+title: $:/bj/ticket/EditTemplate/body/changer
+type: text/vnd.tiddlywiki
+
+\define frame-classes() 
+tc-tiddler-frame tc-tiddler-edit-frame $(missingTiddlerClass)$ $(shadowTiddlerClass)$ $(systemTiddlerClass)$
+\end
+\define editbody(vtemplate)
+<div class=<<frame-classes>>>
+<$set name="storyTiddler" value=<<currentTiddler>>>
+<$keyboard key={{$:/config/shortcuts/cancel-edit-tiddler}} message="tm-cancel-tiddler">
+<$keyboard key={{$:/config/shortcuts/save-tiddler}} message="tm-save-tiddler">
+<$list filter="$:/core/ui/EditTemplate/controls [title[$:/bj/ticket/EditTemplate]]" variable="listItem">
+<$transclude tiddler=<<listItem>>/>
+</$list>
+</$keyboard>
+</$keyboard>
+</$set>
+</div>
+\end
+
+<<editbody "$:/bj/ticket/EditTemplate">>

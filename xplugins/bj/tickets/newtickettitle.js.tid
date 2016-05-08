@@ -1,0 +1,20 @@
+created: 20160406144607899
+modified: 20160505062819257
+module-type: library
+tags: $:/tags/tiddlyclip patch
+title: newtickettitle.js
+type: application/javascript
+
+exports.name ="newtickettitle"; 
+exports.run  = function(baseTitle,options) {
+
+		var options = options || {};
+		var c = 0,
+			title = baseTitle;
+		while($tw.wiki.getTiddler(title) ) {
+			title = baseTitle + 
+				(options.prefix || "-") + 
+				(++c);
+		}
+		return title;
+}

@@ -1,0 +1,6 @@
+tags: patch
+title: $:/bj/postit/EditTemplate/body/changer
+type: text/vnd.tiddlywiki
+
+
+<<editbody "$:/bj/postit/EditTemplate">> 
