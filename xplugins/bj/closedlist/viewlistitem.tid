@@ -9,10 +9,10 @@ title: $:/bj/closedlist/listview
 </$button>
 <$linkcatcher  message="refresh" to=<<parentappend "$:/temp/priv/">>  >
 <$reveal state=<<parentappend "$:/temp/priv/">> text={{!!title}} type="match">
-    <$link to=""><$view field="title"/></$link>
+    <$link to=""><$view  tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>> field="title"/></$link>
 </$reveal>
 <$reveal state=<<parentappend "$:/temp/priv/">> text={{!!title}} type="nomatch">
-    <$link><$view field="title"/></$link>
+    <$link><$view  tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>> field="title"/></$link>
 </$reveal>
 </$linkcatcher>
 </div>
