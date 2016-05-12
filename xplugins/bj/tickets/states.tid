@@ -1,18 +1,33 @@
 created: 20160429152744881
 modified: 20160507124307312
 states: new accepted assigned parked reopened closed leave
+todo: planning doing done
+tickettypes: states todo
 tags: patch
 title: states
 type: text/vnd.tiddlywiki
 
+
+ticket type: 
+<$select field="tickettype" default="states">
+	<$list filter=<<getfield tiddler:"$" field:"tickettypes">>	>
+		<option value=<<currentTiddler>>><<currentTiddler>></option>
+	</$list>
+</$select>
+
+
 <$createclip> 
 <$button>
-Change status 
-<$action-tiddlydo  $tabletid="New Items" $catname="Status" statusnew="temp/status" current=<<currentTiddler>> txt="temp/txt"/>
-</$button> from {{!!status}} to 
+	Change status 
+	<$action-tiddlydo  $tabletid="New Items" $catname="Status" statusnew="temp/status" current=<<currentTiddler>> txt="temp/txt"/>
+</$button> 
+from {{!!status}} to 
+<$vars states={{!!tickettype}}>
 <$select tiddler="temp/status" default="new">
-<$list filter=<<getfield tiddler:"$" field:"states">>>
-<option value=<<currentTiddler>>><<currentTiddler>></option>
-</$list>
-</$select><$edit-text tiddler="temp/txt" tag="input" type="text" field="txt" placeholder="enter reason"/>
+	<$list filter=<<getfield tiddler:"$" field:"<states>" >>>
+		<option value=<<currentTiddler>>><<currentTiddler>></option>
+	</$list>
+</$select>
+</$vars>
+<$edit-text tiddler="temp/txt" tag="input" type="text" field="txt" placeholder="enter reason"/>
 </$createclip>
