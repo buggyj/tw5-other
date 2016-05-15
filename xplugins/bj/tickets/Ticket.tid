@@ -8,7 +8,7 @@ type: text/vnd.tiddlywiki
 <$createclip>
 <$button>
 create new Ticket
-<$action-tiddlydo  $tabletid="New Items" $catname="Ticket" parentTicket="Ticket"/>
+<$action-tiddlydo  $tabletid="New Items" $catname="Ticket" parentTicket={{$:/SiteTitle}}/>
 </$button>
 </$createclip>
 <ul><$list filter="[tag<currentTiddler>]" class='btn btn-primary'>

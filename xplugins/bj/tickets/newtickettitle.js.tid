@@ -1,20 +1,27 @@
-created: 20160406144607899
-modified: 20160505062819257
 module-type: library
 tags: $:/tags/tiddlyclip patch
 title: newtickettitle.js
 type: application/javascript
 
 exports.name ="newtickettitle"; 
-exports.run  = function(baseTitle,options) {
+exports.run  = function(baseTitle,sibling,options) {
 
 		var options = options || {};
-		var c = 0,
-			title = baseTitle;
+		var prefix = options.prefix || "-";
+		var c = 0, title = baseTitle, s, d = prefix.length;
+		if (sibling) {
+			s = baseTitle.lastIndexOf(prefix);
+			if (s != -1) {
+				c = 1 + parseInt(baseTitle.substring(s+d)); 
+				baseTitle = baseTitle.substring(0,s);
+				title = baseTitle + prefix + (c);	
+			}		
+		}
 		while($tw.wiki.getTiddler(title) ) {
 			title = baseTitle + 
-				(options.prefix || "-") + 
+				prefix + 
 				(++c);
 		}
 		return title;
 }
+
