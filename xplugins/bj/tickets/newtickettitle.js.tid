@@ -4,22 +4,20 @@ title: newtickettitle.js
 type: application/javascript
 
 exports.name ="newtickettitle"; 
-exports.run  = function(baseTitle,sibling,options) {
+exports.run  = function(baseTitle,options) {
 
-		var options = options || {};
-		var prefix = options.prefix || "-";
-		var c = 0, title = baseTitle, s, d = prefix.length;
-		if (sibling) {
-			s = baseTitle.lastIndexOf(prefix);
-			if (s != -1) {
-				c = 1 + parseInt(baseTitle.substring(s+d)); 
-				baseTitle = baseTitle.substring(0,s);
-				title = baseTitle + prefix + (c);	
-			}		
-		}
+		var c = 1, title = baseTitle, s;
+
+		s = baseTitle.search(/[0-9]+(?![^0-9]+)/g);
+		if (s != -1) {
+			c = 1 + parseInt(baseTitle.substring(s)); 
+			baseTitle = baseTitle.substring(0,s);
+			
+		} 
+		title = baseTitle  + c;	
+		
 		while($tw.wiki.getTiddler(title) ) {
 			title = baseTitle + 
-				prefix + 
 				(++c);
 		}
 		return title;
