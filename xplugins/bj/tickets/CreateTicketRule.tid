@@ -7,5 +7,4 @@ type: text/vnd.tiddlywiki
 \rules only table wikilink prettylink 
 
 |!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes|
-|null|{\"tiddlers\":{}}||{ "#title": "((*@newtickettitle(@parentTicket)*))" }, {"$title": "Draft of '((*#title*))'" }, {"$type":"application/json"}, {"$tags":"((*@parentTicket*))"},{"$applicationtype":"ticket"},{"$description":""}, {"$status":"proto"}, {"$draft.of":"((*#title*))"}, {"$draft.title":"((*#title*))"},{"$function":"undefined"}, {"$caption":""}, {"$tccaption":""}||add inc open|
-				
+|null|{\"tiddlers\":{}}||{"#applicationtype":"ticket"},{ "#title": "((*@newtickettitle(@parentTicket)*))" }, {"$title": "Draft of '((*#title*))'" }, {"$type":"application/json"}, {"$tags":"((*@parentTicket*)) ((*#applicationtype*))"},{"$applicationtype":"((*#applicationtype*))"},{"$description":""}, {"$status":"proto"}, {"$draft.of":"((*#title*))"}, {"$draft.title":"((*#title*))"},{"$function":"undefined"}, {"$caption":""}, {"$tccaption":""}||add inc open|				

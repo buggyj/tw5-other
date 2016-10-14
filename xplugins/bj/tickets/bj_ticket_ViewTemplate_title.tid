@@ -26,12 +26,12 @@ $:/config/ViewToolbarButtons/Visibility/$(listItem)$
 <span class="tc-system-title-prefix">$:/</span><$text text=<<currentTiddler>>/>
 </h2>
 </$list>
-<$list filter="[all[current]!prefix[$:/]!prefix[Ticket-]]">
+<$list filter="[all[current]!prefix[$:/]!applicationtype[ticket]]">
 <h2 class="tc-title">
 <$view field="title"/>
 </h2>
 </$list>
-<$list filter="[all[current]!prefix[$:/]prefix[Ticket-]]">
+<$list filter="[all[current]!prefix[$:/]applicationtype[ticket]]">
 <h2 class="tc-title">
 <$view field="caption"/>(<$view field="title"/>)
 </h2>
