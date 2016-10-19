@@ -134,7 +134,7 @@ exportsp.parseMacroParameter = function(source,pos) {
 		start: pos
 	};
 	// Define our regexp
-	var reMacroParameter = /(?:([A-Za-z0-9\-_]+)\s*:)?(?:\s*(?:"""([\s\S]*?)"""|"([^"]*)"|'([^']*)'|\[\[([^\]]*)\]\]|\[\<([^\]\>]*)\>\]|\[\{([^\]\}]*)\}\]|([^\s>}"'=]+)))/g;
+	var reMacroParameter = /(?:([A-Za-z0-9\-_]+)\s*:)?(?:\s*(?:"""([\s\S]*?)"""|"([^"]*)"|'([^']*)'|\[\[([^\]]*)\]\]|<([^>]*)>|\{([^\}]*)\}|([^\s>}"'=]+)))/g;
 	// Skip whitespace
 	pos = exportsp.skipWhiteSpace(source,pos);
 	// Look for the parameter

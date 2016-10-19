@@ -16,7 +16,7 @@ Wiki rule for HTML elements and widgets. For example:
 
 var utils = require ("$:/bj/modules/utils/parseutils.js");
 exports.name = "html2";
-exports.types = {inline: true, block: true};
+exports.types = {user: true};
 
 exports.init = function(parser) {
 	this.parser = parser;
@@ -74,7 +74,7 @@ exports.parseTag = function(source,pos,options) {
 			attributes: {}
 		};
 	// Define our regexps
-	var reTagName = /([a-zA-Z0-9\-\$]+)/g;
+	var reTagName = /([a-zA-Z0-9\-\$\@]+)/g;
 	// Skip whitespace
 	pos = utils.p.skipWhiteSpace(source,pos);
 	// Look for a less than sign
@@ -91,6 +91,13 @@ exports.parseTag = function(source,pos,options) {
 	node.tag = token.match[1];
 	if(node.tag.charAt(0) === "$") {
 		node.type = node.tag.substr(1);
+	}
+	else if(node.tag.charAt(0) === "@") {
+		node.type = "component";
+		//node.attributes["$component"] = "component";
+		var attribute = $tw.utils.parseAttribute('$component="'+node.tag.substr(1)+'"',0);
+		node.attributes[attribute.name] = attribute;
+		node.tag = "$"+node.tag.substr(1);
 	}
 	pos = token.end;
 	// Process attributes
@@ -129,7 +136,7 @@ exports.parseTag = function(source,pos,options) {
 
 exports.findNextTag = function(source,pos,options) {
 	// A regexp for finding candidate HTML tags
-	var reLookahead = /<([a-zA-Z\-\$]+)/g;
+	var reLookahead = /<([a-zA-Z\-\$\@]+)/g;
 	// Find the next candidate
 	reLookahead.lastIndex = pos;
 	var match = reLookahead.exec(source);
