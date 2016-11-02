@@ -234,6 +234,38 @@ var reactFor = function(outputFunc) {
     return nestedOutput;
 };
 
+
+var mhtmlFor = function(outputFunc) {
+    var nestedOutput = function(ast, state) {
+        state = state || {};
+        if (Array.isArray(ast)) {
+            var oldKey = state.key;
+            var result = [];
+
+            // map nestedOutput over the ast, except group any text
+            // nodes together into a single string output.
+            var lastWasString = false;
+            for (var i = 0; i < ast.length; i++) {
+                state.key = i;
+                var nodeOut = nestedOutput(ast[i], state);
+                var isString = (typeof nodeOut === "string");
+                if (isString && lastWasString) {
+                    result[result.length - 1] += nodeOut;
+                } else {
+                    result.push(nodeOut);
+                }
+                lastWasString = isString;
+            }
+
+            state.key = oldKey;
+            return result;
+        } else {
+            return outputFunc(ast, nestedOutput, state);
+        }
+    };
+    return nestedOutput;
+};
+
 var htmlFor = function(outputFunc) {
     var nestedOutput = function(ast, state) {
         state = state || {};
@@ -291,8 +323,29 @@ var reactElement = function(element) {
 //   eg. { "href": "http://google.com" }. Falsey attributes are filtered out.
 // isClosed: boolean that controls whether tag is closed or not (eg. img tags).
 //   defaults to true
+var mhtmlTag = function(tagName, content, attribs, isClosed) {
+    attribs = attribs || {};
+    isClosed = typeof isClosed !== 'undefined' ? isClosed : true;
+
+    var attributes = {};
+    for (var attr in attribs) {
+        // Removes falsey attributes
+        if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
+                attribs[attr]) {
+            attributes[attr] =  {type: "string", value:attribs[attr]}
+        }
+    }
+        
+	return {
+		type: "element",
+		tag: tagName , 
+		attributes:attributes,
+		children: content
+	};
+};
+
 var htmlTag = function(tagName, content, attributes, isClosed) {
-    attributes = attributes || {};
+attributes = attributes || {};
     isClosed = typeof isClosed !== 'undefined' ? isClosed : true;
 
     var attributeString = "";
@@ -543,6 +596,64 @@ var parseRef = function(capture, state, refNode) {
 };
 
 var defaultRules = {
+transcludeblk: { // /^\[\[\u2603 (([a-z-]+) ([0-9]+))\]\]/
+        match: blockRegex(/^\{\{([^\{\}\|]*)(?:\|\|([^\|\{\}]+))?\}\}\n/),
+        parse: function(capture, parse, state) {
+            return {
+                template : $tw.utils.trim(capture[2]),
+				textRef : $tw.utils.trim(capture[1]),
+				isBlock:true
+            };
+        },
+
+        mhtml: function(node, output, state) {
+			// Prepare the transclude widget
+			var transcludeNode = {
+					type: "transclude",
+					attributes: {},
+					isBlock:node.isBlock
+					
+				};
+			// Prepare the tiddler widget
+			var tr, targetTitle, targetField, targetIndex, tiddlerNode;
+			if(node.textRef) {
+				tr = $tw.utils.parseTextReference(node.textRef);
+				targetTitle = tr.title;
+				targetField = tr.field;
+				targetIndex = tr.index;
+				tiddlerNode = {
+					type: "tiddler",
+					attributes: {
+						tiddler: {type: "string", value: targetTitle},
+						isBlock:node.isBlock
+					},
+					children: [transcludeNode]
+				};
+			}
+			if(node.template) {
+				transcludeNode.attributes.tiddler = {type: "string", value: node.template};
+				if(node.textRef) {
+					return tiddlerNode;
+				} else {
+					return transcludeNode;
+				}
+			} else {
+				if(node.textRef) {
+					transcludeNode.attributes.tiddler = {type: "string", value: targetTitle};
+					if(targetField) {
+						transcludeNode.attributes.field = {type: "string", value: targetField};
+					}
+					if(targetIndex) {
+						transcludeNode.attributes.index = {type: "string", value: targetIndex};
+					}
+					return tiddlerNode;
+				} else {
+					return transcludeNode;
+				}
+			}	
+		
+		}
+    },
     heading: {
         match: blockRegex(/^ *(#{1,6}) *([^\n]+?) *#* *(?:\n *)+\n/),
         parse: function(capture, parse, state) {
@@ -564,6 +675,9 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return htmlTag("h" + node.level, output(node.content, state));
+        },
+        mhtml: function(node, output, state) {
+			return mhtmlTag("h" + node.level, output(node.content, state));
         }
     },
     nptable: {
@@ -596,6 +710,9 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return "<hr>";
+        },
+        mhtml: function(node, output, state) {
+           return mhtmlTag("hr");
         }
     },
     codeBlock: {
@@ -641,7 +758,17 @@ var defaultRules = {
                 class: className
             });
             return htmlTag("pre", codeBlock);
-        }
+        },
+        mhtml: function(node, output, state) {
+		 var className = node.lang ?"markdown-code-" + node.lang : "";
+			return {
+				type: "codeblock",
+				attributes: {
+						code: {type: "string", value:  node.content},
+						language: {type: "string", value: className}
+				}
+			}
+		}
     },
     fence: {
         match: blockRegex(/^ *(`{3,}|~{3,}) *(\S+)? *\n([\s\S]+?)\s*\1 *(?:\n *)+\n/),
@@ -674,6 +801,9 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return htmlTag("blockquote", output(node.content, state));
+        },
+        mhtml: function(node, output, state) {
+            return mhtmlTag("blockquote", output(node.content, state));
         }
     },
     list: {
@@ -804,6 +934,17 @@ var defaultRules = {
                 start: node.start
             };
             return htmlTag(listTag, listItems, attributes);
+        },
+        mhtml: function(node, output, state) {
+            var listItems = node.items.map(function(item) {
+                return mhtmlTag("li", output(item, state));
+            });
+
+            var listTag = node.ordered ? "ol" : "ul";
+            var attributes = {
+                start: node.start
+            };
+            return mhtmlTag(listTag, listItems, attributes);
         }
     },
     def: {
@@ -855,7 +996,8 @@ var defaultRules = {
             };
         },
         react: function() { return null; },
-        html: function() { return null; }
+        html: function() { return null; },
+        mhtml: function() { return {type: "text", text: ""}; }
     },
     table: {
         match: blockRegex(/^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/),
@@ -960,13 +1102,41 @@ var defaultRules = {
             var tbody = htmlTag("tbody", rows);
 
             return htmlTag("table", thead + tbody);
+        },
+        mhtml: function(node, output, state) {
+            var getStyle = function(colIndex) {
+                return node.align[colIndex] == null ? "" :
+                    "text-align:" + node.align[colIndex] + ";";
+            };
+
+            var headers = node.header.map(function(content, i) {
+                return mhtmlTag("th", output(content, state),
+                    { style: getStyle(i) });
+            });
+
+            var rows = node.cells.map(function(row) {
+                var cols = row.map(function(content, c) {
+                    return mhtmlTag("td", output(content, state),
+                        { style: getStyle(c) });
+                });
+
+                return mhtmlTag("tr", cols);
+            });
+
+            var thead = mhtmlTag("thead", [mhtmlTag("tr", headers)]);
+            var tbody = mhtmlTag("tbody", rows);
+
+            return mhtmlTag("table", [thead ,tbody]);
         }
     },
     newline: {
         match: blockRegex(/^(?:\n *)*\n/),
         parse: ignoreCapture,
         react: function(node, output, state) { return "\n"; },
-        html: function(node, output, state) { return "\n"; }
+        html: function(node, output, state) { return "\n"; },
+        mhtml: function(node, output, state) {
+           return {type: "text", text: ""};
+        }
     },
     paragraph: {
         match: blockRegex(/^((?:[^\n]|\n(?! *\n))+)(?:\n *)+\n/),
@@ -988,6 +1158,12 @@ var defaultRules = {
                 class: 'paragraph'
             };
             return htmlTag("div", output(node.content, state), attributes);
+        },
+        mhtml: function(node, output, state) {
+            var attributes = {
+                class: 'paragraph'
+            };
+            return mhtmlTag("div", output(node.content, state), attributes);
         }
     },
     escape: {
@@ -1028,6 +1204,7 @@ var defaultRules = {
             }
 
             return {
+
                 type: "link",
                 content: [{
                     type: "text",
@@ -1083,6 +1260,14 @@ var defaultRules = {
             };
 
             return htmlTag("a", output(node.content, state), attributes);
+        },
+        mhtml: function(node, output, state) {
+            var attributes = {
+                href: sanitizeUrl(node.target),
+                title: node.title
+            };
+
+            return mhtmlTag("a", output(node.content, state), attributes);
         }
     },
     image: {
@@ -1118,6 +1303,15 @@ var defaultRules = {
             };
 
             return htmlTag("img", "", attributes, false);
+        },
+        mhtml: function(node, output, state) {
+            var attributes = {
+                src: sanitizeUrl(node.target),
+                alt: node.alt,
+                title: node.title
+            };
+
+            return mhtmlTag("img", "", attributes, false);
         }
     },
     reflink: {
@@ -1164,6 +1358,9 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return htmlTag("strong", output(node.content, state));
+        },
+        mhtml: function(node, output, state) {
+            return mhtmlTag("strong", output(node.content, state));
         }
     },
     u: {
@@ -1182,6 +1379,9 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return htmlTag("u", output(node.content, state));
+        },
+        mhtml: function(node, output, state) {
+            return mhtmlTag("u", output(node.content, state));
         }
     },
     em: {
@@ -1225,6 +1425,9 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return htmlTag("em", output(node.content, state));
+        },
+        mhtml: function(node, output, state) {
+            return mhtmlTag("em", output(node.content, state));
         }
     },
     del: {
@@ -1243,6 +1446,9 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return htmlTag("del", output(node.content, state));
+        },
+        mhtml: function(node, output, state) {
+            return mhtmlTag("del", output(node.content, state));
         }
     },
     inlineCode: {
@@ -1265,7 +1471,17 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return htmlTag("code", node.content);
-        }
+        },
+        mhtml: function(node, output, state) {
+			return {
+				type: "element",
+				tag: "code",
+				children: [{
+					type: "text",
+					text: node.content
+				}]
+			};
+		}
     },
     br: {
         match: anyScopeRegex(/^ {2,}\n/),
@@ -1281,7 +1497,93 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return "<br>";
+        },
+        mhtml: function(node, output, state) {
+           return {type: "text", text: node.content};;
         }
+    },
+    math: {
+        match: anyScopeRegex(/^\$\$(?!\$)([\s\S]*?)\$\$/),
+        parse: function(capture, parse, state) {
+            return {
+                content: capture[1]
+            };
+        },
+        mhtml: function(node, output, state) {
+			var displayMode = node.content.indexOf('\n') != -1;
+           return {
+				type: "latex",
+				attributes: {
+					text: {
+						type: "text",
+						value: node.content
+					},
+					displayMode: {
+						type: "text",
+						value: displayMode ? "true" : "false"
+					}
+				}
+			};
+        }
+    },
+
+transcludeinline: { // /^\[\[\u2603 (([a-z-]+) ([0-9]+))\]\]/
+        match: inlineRegex(/^\{\{([^\{\}\|]*)(?:\|\|([^\|\{\}]+))?\}\}/),
+        parse: function(capture, parse, state) {
+            return {
+                template : $tw.utils.trim(capture[2]),
+				textRef : $tw.utils.trim(capture[1]),
+				isBlock:false
+            };
+        },
+
+        mhtml: function(node, output, state) {
+			// Prepare the transclude widget
+			var transcludeNode = {
+					type: "transclude",
+					attributes: {},
+					isBlock:node.isBlock
+					
+				};
+			// Prepare the tiddler widget
+			var tr, targetTitle, targetField, targetIndex, tiddlerNode;
+			if(node.textRef) {
+				tr = $tw.utils.parseTextReference(node.textRef);
+				targetTitle = tr.title;
+				targetField = tr.field;
+				targetIndex = tr.index;
+				tiddlerNode = {
+					type: "tiddler",
+					attributes: {
+						tiddler: {type: "string", value: targetTitle},
+						isBlock:node.isBlock
+					},
+					children: [transcludeNode]
+				};
+			}
+			if(node.template) {
+				transcludeNode.attributes.tiddler = {type: "string", value: node.template};
+				if(node.textRef) {
+					return tiddlerNode;
+				} else {
+					return transcludeNode;
+				}
+			} else {
+				if(node.textRef) {
+					transcludeNode.attributes.tiddler = {type: "string", value: targetTitle};
+					if(targetField) {
+						transcludeNode.attributes.field = {type: "string", value: targetField};
+					}
+					if(targetIndex) {
+						transcludeNode.attributes.index = {type: "string", value: targetIndex};
+					}
+					return tiddlerNode;
+				} else {
+					return transcludeNode;
+				}
+			}	
+		
+		}
     },
     text: {
         // Here we look for anything followed by non-symbols,
@@ -1301,8 +1603,12 @@ var defaultRules = {
         },
         html: function(node, output, state) {
             return node.content;
+        },
+        mhtml: function(node, output, state) {
+            return {type: "text", text: node.content};
         }
     }
+    
 };
 
 Object.keys(defaultRules).forEach(function(type, i) {
@@ -1344,6 +1650,7 @@ var defaultImplicitParse = function(source) {
 
 var defaultReactOutput = reactFor(ruleOutput(defaultRules, "react"));
 var defaultHtmlOutput = htmlFor(ruleOutput(defaultRules, "html"));
+var defaultMhtmlOutput = mhtmlFor(ruleOutput(defaultRules, "mhtml"));
 
 var SimpleMarkdown = {
     defaultRules: defaultRules,
@@ -1351,6 +1658,7 @@ var SimpleMarkdown = {
     ruleOutput: ruleOutput,
     reactFor: reactFor,
     htmlFor: htmlFor,
+    mhtmlFor: mhtmlFor,
 
     inlineRegex: inlineRegex,
     blockRegex: blockRegex,
@@ -1365,6 +1673,7 @@ var SimpleMarkdown = {
 
     defaultReactOutput: defaultReactOutput,
     defaultHtmlOutput: defaultHtmlOutput,
+    defaultMhtmlOutput: defaultMhtmlOutput,
 
     preprocess: preprocess,
     sanitizeUrl: sanitizeUrl,
@@ -1374,7 +1683,7 @@ var SimpleMarkdown = {
     outputFor: reactFor,
     defaultOutput: defaultReactOutput,
 };
-
+/*
 if (typeof module !== "undefined" && module.exports) {
     module.exports = SimpleMarkdown;
 } else if (typeof global !== "undefined") {
@@ -1382,5 +1691,7 @@ if (typeof module !== "undefined" && module.exports) {
 } else {
     window.SimpleMarkdown = SimpleMarkdown;
 }
+* */
 
+return exports.SimpleMarkdown=SimpleMarkdown;
 })();

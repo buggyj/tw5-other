@@ -71,19 +71,19 @@ function transformNode(node) {
 var MarkdownParser = function(type,text,options) {
 		// Parse the text into inline runs or blocks
 	var mdParse, markdownTree;
-	//if(!options.parseAsInline) 
+	if(!options.parseAsInline) 
 		mdParse = SimpleMarkdown.defaultBlockParse;
-	//else
-		//mdParse = SimpleMarkdown.defaultInlineParse;
+	else
+		mdParse = SimpleMarkdown.defaultInlineParse;
 	
 	markdownTree = mdParse(text);
 	var mdOutput = SimpleMarkdown.defaultMhtmlOutput;
-		this.tree = mdOutput(markdownTree);
-	//this.tree = [ {type: "text", text: JSON.stringify([this.tree,markdownTree], null, 4)}];
+		this.tree = mdOutput(markdownTree)||[];
+	//BJ uncomment to DEBUG!!!! this.tree = [ {type: "text", text: JSON.stringify([this.tree,markdownTree], null, 4)}];
 };
 
 /*
-
+parseTreeNode
 [ 'html',
   [ 'p', 'something' ],
   [ 'h1',
