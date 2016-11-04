@@ -328,14 +328,54 @@ var mhtmlTag = function(tagName, content, attribs, isClosed) {
     isClosed = typeof isClosed !== 'undefined' ? isClosed : true;
 
     var attributes = {};
-    for (var attr in attribs) {
-        // Removes falsey attributes
-        if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
-                attribs[attr]) {
-            attributes[attr] =  {type: "string", value:attribs[attr]}
-        }
-    }
-        
+    
+    if (tagName.charAt(0) === "$"){
+		for (var attr in attribs) {
+			// Removes falsey attributes
+			if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
+					attribs[attr]) {
+				attributes[attr] =  {name:attr, type: "string", value:attribs[attr]}
+			}
+		}
+		return {
+			type: tagName.substr(1), 
+			attributes:attributes,
+			children: content
+		};
+	}  
+	
+	for (var attr in attribs) {
+		// Removes falsey attributes
+		if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
+				attribs[attr]) {
+			attributes[attr] =  attribs[attr]
+		}
+	}
+			for (var attr in attribs) {
+			// Removes falsey attributes
+			if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
+					attribs[attr]) {
+				attributes[attr] =  {name:attr, type: "string", value:attribs[attr]}
+			}
+		}
+		
+	  if (tagName === "a" && attributes.href.value[0] === "#") {
+			tagName = "link";
+			attributes.to = attributes.href;
+			if (attributes.to.type === "string") {
+				//Remove '#' before conversion to wikilink
+				attributes.to.value = attributes.to.value.substr(1);
+			}
+			delete attributes.href;
+			
+			return {
+				type: tagName, 
+				attributes:attributes,
+				children: content
+			};
+			
+		}
+		
 	return {
 		type: "element",
 		tag: tagName , 
@@ -343,6 +383,51 @@ var mhtmlTag = function(tagName, content, attribs, isClosed) {
 		children: content
 	};
 };
+
+
+var mhtmlTagtw = function(tagName, content, attribs, isClosed) {
+    attribs = attribs || {};
+    isClosed = typeof isClosed !== 'undefined' ? isClosed : true;
+
+    var attributes = {};
+    
+    if (tagName.charAt(0) === "$"){
+		for (var attr in attribs) {
+			// Removes falsey attributes
+			if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
+					attribs[attr]) {
+				attributes[attr] =  attribs[attr]
+			}
+		}
+		return {
+			type: tagName.substr(1), 
+			attributes:attributes,
+			children: content
+		};
+	}  
+	
+	for (var attr in attribs) {
+		// Removes falsey attributes
+		if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
+				attribs[attr]) {
+			attributes[attr] =  attribs[attr]
+		}
+	}
+			for (var attr in attribs) {
+			// Removes falsey attributes
+			if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
+					attribs[attr]) {
+				attributes[attr] =  attribs[attr]
+			}
+		}
+	return {
+		type: "element",
+		tag: tagName , 
+		attributes:attributes,
+		children: content
+	};
+};
+
 
 var htmlTag = function(tagName, content, attributes, isClosed) {
 attributes = attributes || {};
@@ -785,7 +870,7 @@ transcludeblk: { // /^\[\[\u2603 (([a-z-]+) ([0-9]+))\]\]/
         parse: function(capture, parse, state) {
             var content = capture[0].replace(/^ *> ?/gm, '');
             return {
-                content: parse(content, state)
+                content: parse(content + "\n\n", state)
             };
         },
         react: function(node, output, state) {
@@ -806,6 +891,124 @@ transcludeblk: { // /^\[\[\u2603 (([a-z-]+) ([0-9]+))\]\]/
             return mhtmlTag("blockquote", output(node.content, state));
         }
     },
+    element:{
+		 match: function(source, state, prevCapture) {
+			 	// Find the next tag
+			this.nextTag = this.findNextTag(source,0,{
+				requireLineBreak: false//  BJ this.is.block
+			});
+			
+			if (!this.nextTag) return null;
+			
+			if(this.nextTag.isSelfClosing) return  [source.substring(0,this.nextTag.end),""];
+			
+			//if($tw.config.htmlVoidElements.indexOf(this.nextTag.tag) === -1) { BJ
+			{
+				var end, reEndString = "</" + $tw.utils.escapeRegExp(this.nextTag.tag) + ">",
+					reEnd = new RegExp("(" + reEndString + ")","mg");
+							reEnd.lastIndex = this.nextTag.end;
+				var endMatch = reEnd.exec(source);
+				if(endMatch ){//&& endMatch.index === this.nextTag.end) {BJ
+					end = endMatch.index + endMatch[0].length;
+				} else return null;
+			    return  [source.substring(0,end),source.substring(this.nextTag.end, endMatch.index)] ;
+			}
+			return null;
+		 },
+		 findNextTag : function(source,pos,options) {
+			// A regexp for finding candidate HTML tags
+			var reLookahead = /^<([a-zA-Z\-\$]+)/g;
+			// Find the next candidate
+			reLookahead.lastIndex = pos;
+			var match = reLookahead.exec(source);
+			while(match) {
+				// Try to parse the candidate as a tag
+				var tag = this.parseTag(source,match.index,options);
+				// Return success
+				if(tag ) {// BJ && this.isLegalTag(tag)) {
+					return tag;
+				}
+				// Look for the next match
+				reLookahead.lastIndex = match.index + 1;
+				match = reLookahead.exec(source);
+			}
+			// Failed
+			return null;
+		},
+		
+	     parseTag : function(source,pos,options) {
+			options = options || {};
+			var token,
+				node = {
+					type: "element",
+					start: pos,
+					attributes: {}
+				};
+			// Define our regexps
+			var reTagName = /([a-zA-Z0-9\-\$]+)/g;
+			// Skip whitespace
+			pos = $tw.utils.skipWhiteSpace(source,pos);
+			// Look for a less than sign
+			token = $tw.utils.parseTokenString(source,pos,"<");
+			if(!token) {
+				return null;
+			}
+			pos = token.end;
+			// Get the tag name
+			token = $tw.utils.parseTokenRegExp(source,pos,reTagName);
+			if(!token) {
+				return null;
+			}
+			node.tag = token.match[1];
+			if(node.tag.charAt(0) === "$") {
+				node.type = node.tag.substr(1);
+			}
+			pos = token.end;
+			// Process attributes
+			var attribute = $tw.utils.parseAttribute(source,pos);
+			while(attribute) {
+				node.attributes[attribute.name] = attribute;
+				pos = attribute.end;
+				// Get the next attribute
+				attribute = $tw.utils.parseAttribute(source,pos);
+			}
+			// Skip whitespace
+			pos = $tw.utils.skipWhiteSpace(source,pos);
+			// Look for a closing slash
+			token = $tw.utils.parseTokenString(source,pos,"/");
+			if(token) {
+				pos = token.end;
+				node.isSelfClosing = true;
+			}
+			// Look for a greater than sign
+			token = $tw.utils.parseTokenString(source,pos,">");
+			if(!token) {
+				return null;
+			}
+			pos = token.end;
+			// Check for a required line break
+			if(options.requireLineBreak) {
+				token = $tw.utils.parseTokenRegExp(source,pos,/([^\S\n\r]*\r?\n(?:[^\S\n\r]*\r?\n|$))/g);
+				if(!token) {
+					return null;
+				}
+			}
+			// Update the end position
+			node.end = pos;
+			return node;
+		},
+        parse: function(capture, parse, state) {
+            return {
+				tag:this.nextTag,
+                content:  parseInline(parse, capture[1], state)
+            };
+        },
+
+        mhtml: function(node, output, state) {
+			return mhtmlTagtw(node.tag.tag, output(node.content, state), node.tag.attributes);
+        }
+			 
+	},
     list: {
         match: function(source, state, prevCapture) {
             // We only want to break into a list if we are at the start of a
@@ -1306,12 +1509,12 @@ transcludeblk: { // /^\[\[\u2603 (([a-z-]+) ([0-9]+))\]\]/
         },
         mhtml: function(node, output, state) {
             var attributes = {
-                src: sanitizeUrl(node.target),
-                alt: node.alt,
-                title: node.title
+                source: {type: "string", value: sanitizeUrl(node.target)},
+                tooltip: {type: "string", value: node.alt},
+                title: {type: "string", value: node.title}
             };
 
-            return mhtmlTag("img", "", attributes, false);
+            return mhtmlTagtw("$image", "", attributes, false);
         }
     },
     reflink: {
