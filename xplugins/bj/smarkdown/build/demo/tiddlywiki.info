@@ -1,0 +1,12 @@
+{
+	"plugins": [
+		"bj/smarkdown",
+		"bj/macroext"
+	],
+	"themes": [
+		"tiddlywiki/vanilla",
+		"tiddlywiki/snowwhite"
+	],
+		"doNotSave": [
+	]
+}

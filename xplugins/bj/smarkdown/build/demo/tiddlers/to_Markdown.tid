@@ -1,0 +1,51 @@
+created: 20161119091940548
+modified: 20161120070956579
+tags: 
+title: to Markdown
+type: text/x-smarkdown
+
+Brief instructions for getting started on the different platforms and configurations that [TiddlyWiki](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyWiki) supports. See the [A Gentle Guide to TiddlyWiki](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#A%20Gentle%20Guide%20to%20TiddlyWiki) for a more leisurely introduction.
+
+
+Firefox provides the best user experience for using [TiddlyWiki](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyWiki) with the [TiddlyFox](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyFox) browser extension.
+
+If you're using [Firefox for Android](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#Firefox%20for%20Android), see the instructions for [Saving with TiddlyFox on Android](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#Saving%20with%20TiddlyFox%20on%20Android).
+
+
+
+1.  Ensure you have the latest version of [Firefox](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#Firefox)
+    *   [http://getfirefox.com](http://getfirefox.com)
+
+2.  Install the latest release of the [TiddlyFox](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyFox) extension from:
+    *   [https://addons.mozilla.org/en-GB/firefox/addon/tiddlyfox/](https://addons.mozilla.org/en-GB/firefox/addon/tiddlyfox/)
+3.  Restart [Firefox](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#Firefox)
+4.  [Download](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#Download) an empty [TiddlyWiki](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyWiki) by clicking this button:
+
+1.  Locate the file you just downloaded
+    *   You may rename it, but be sure to keep the `.html` or `.htm` extension
+2.  Open the file in [Firefox](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#Firefox)
+3.  Click **OK** in response to the prompt from [TiddlyFox](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyFox) that asks whether to enable saving for this file
+4.  Try creating a new tiddler using the **new tiddler** button in the sidebar. Type some content for the tiddler, and click the **ok** button
+5.  Save your changes by clicking the **save changes** button in the sidebar
+    *   Look for the yellow notification **Saved wiki** at the top right of the window
+6.  Refresh the browser window to verify that your changes have been saved correctly
+
+
+
+
+Troubleshooting:
+
+*   Don't attempt to use the browser **File**/**Save** menu option to save changes (it doesn't work)
+
+See also:
+
+*   [Encryption](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#Encryption) explains how to use [TiddlyWiki](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyWiki)'s built-in encryption to protect your content with a password
+*   [Saving on TiddlySpot](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#Saving%20on%20TiddlySpot), a free service that lets you use [TiddlyWiki](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyWiki) online
+*   Saving on [TiddlyDesktop](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyDesktop), a custom desktop application for working with [TiddlyWiki](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyWiki)
+*   You can also download this full [TiddlyWiki](file:///data/radice/playTw519/editions/tw5.com/output/tw5v13.html#TiddlyWiki) including all the documentation:
+
+If the button doesn't work save this link:
+
+[http://tiddlywiki.com/index.html](http://tiddlywiki.com/index.html)
+
+Your browser may ask you to accept the download before it begins

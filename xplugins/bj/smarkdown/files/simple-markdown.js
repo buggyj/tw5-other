@@ -45,6 +45,8 @@
  */
 (function() {
 
+var utils = require ("$:/bj/modules/utils/parseutils.js").p;
+
 var CR_NEWLINE_R = /\r\n?/g;
 var TAB_R = /\t/g;
 var FORMFEED_R = /\f/g
@@ -400,29 +402,41 @@ var mhtmlTagtw = function(tagName, content, attribs, isClosed) {
 			}
 		}
 		return {
-			type: tagName.substr(1), 
+			type: tagName.replace(/^\$([a-zA-Z\-]*)[0-9]*/,"$1"), 
 			attributes:attributes,
 			children: content
 		};
 	}  
 	
-	for (var attr in attribs) {
-		// Removes falsey attributes
-		if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
-				attribs[attr]) {
-			attributes[attr] =  attribs[attr]
-		}
-	}
-			for (var attr in attribs) {
+	if(tagName.charAt(0) === "@") {
+		for (var attr in attribs) {
 			// Removes falsey attributes
 			if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
 					attribs[attr]) {
 				attributes[attr] =  attribs[attr]
 			}
 		}
+		var attribute = utils.parseAttribute('$component="'+tagName.replace(/^@([a-zA-Z\-]*)[0-9]*/,"$1")+'"',0);
+		attributes[attribute.name] = attribute;		
+		return {
+			type: "component",
+			attributes:attributes,
+			children: content
+		};		
+
+	}
+	
+
+		for (var attr in attribs) {
+		// Removes falsey attributes
+		if (Object.prototype.hasOwnProperty.call(attribs, attr) &&
+				attribs[attr]) {
+			attributes[attr] =  attribs[attr]
+		}
+		}
 	return {
 		type: "element",
-		tag: tagName , 
+		tag: tagName.replace(/^([a-zA-Z\-]*)[0-9]*/,"$1"), 
 		attributes:attributes,
 		children: content
 	};
@@ -917,7 +931,7 @@ transcludeblk: { // /^\[\[\u2603 (([a-z-]+) ([0-9]+))\]\]/
 		 },
 		 findNextTag : function(source,pos,options) {
 			// A regexp for finding candidate HTML tags
-			var reLookahead = /^<([a-zA-Z\-\$]+)/g;
+			var reLookahead = /^<([a-zA-Z\-\$\@][a-zA-Z\-\$0-9]*)/g;
 			// Find the next candidate
 			reLookahead.lastIndex = pos;
 			var match = reLookahead.exec(source);
@@ -945,50 +959,52 @@ transcludeblk: { // /^\[\[\u2603 (([a-z-]+) ([0-9]+))\]\]/
 					attributes: {}
 				};
 			// Define our regexps
-			var reTagName = /([a-zA-Z0-9\-\$]+)/g;
+			var reTagName = /([a-zA-Z\-\$\@][a-zA-Z\-\$0-9]*)/g;
 			// Skip whitespace
-			pos = $tw.utils.skipWhiteSpace(source,pos);
+			pos = utils.skipWhiteSpace(source,pos);
 			// Look for a less than sign
-			token = $tw.utils.parseTokenString(source,pos,"<");
+			token = utils.parseTokenString(source,pos,"<");
 			if(!token) {
 				return null;
 			}
 			pos = token.end;
 			// Get the tag name
-			token = $tw.utils.parseTokenRegExp(source,pos,reTagName);
+			token = utils.parseTokenRegExp(source,pos,reTagName);
 			if(!token) {
 				return null;
 			}
 			node.tag = token.match[1];
 			if(node.tag.charAt(0) === "$") {
-				node.type = node.tag.substr(1);
-			}
+				node.type = node.tag.replace(/^$([a-zA-Z\-]*)[0-9]*/,"$1");
+			} 
+
+			
 			pos = token.end;
 			// Process attributes
-			var attribute = $tw.utils.parseAttribute(source,pos);
+			var attribute = utils.parseAttribute(source,pos);
 			while(attribute) {
 				node.attributes[attribute.name] = attribute;
 				pos = attribute.end;
 				// Get the next attribute
-				attribute = $tw.utils.parseAttribute(source,pos);
+				attribute = utils.parseAttribute(source,pos);
 			}
 			// Skip whitespace
-			pos = $tw.utils.skipWhiteSpace(source,pos);
+			pos = utils.skipWhiteSpace(source,pos);
 			// Look for a closing slash
-			token = $tw.utils.parseTokenString(source,pos,"/");
+			token = utils.parseTokenString(source,pos,"/");
 			if(token) {
 				pos = token.end;
 				node.isSelfClosing = true;
 			}
 			// Look for a greater than sign
-			token = $tw.utils.parseTokenString(source,pos,">");
+			token = utils.parseTokenString(source,pos,">");
 			if(!token) {
 				return null;
 			}
 			pos = token.end;
 			// Check for a required line break
 			if(options.requireLineBreak) {
-				token = $tw.utils.parseTokenRegExp(source,pos,/([^\S\n\r]*\r?\n(?:[^\S\n\r]*\r?\n|$))/g);
+				token = utils.parseTokenRegExp(source,pos,/([^\S\n\r]*\r?\n(?:[^\S\n\r]*\r?\n|$))/g);
 				if(!token) {
 					return null;
 				}
@@ -999,7 +1015,7 @@ transcludeblk: { // /^\[\[\u2603 (([a-z-]+) ([0-9]+))\]\]/
 		},
         parse: function(capture, parse, state) {
             return {
-				tag:this.nextTag,
+				tag:this.nextTag, //BJ very bad hack to access this tag from here
                 content:  parseInline(parse, capture[1], state)
             };
         },

@@ -1,0 +1,15 @@
+{
+	"plugins": [
+		"tiddlywiki/tiddlyweb",
+		"tiddlywiki/filesystem",	
+		"bj/smarkdown"
+	],
+	"themes": [
+		"tiddlywiki/vanilla",
+		"tiddlywiki/snowwhite"
+	],
+	"doNotSave": [
+	],
+	"includeWikis": [
+	]
+}

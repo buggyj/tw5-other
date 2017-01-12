@@ -1,7 +1,10 @@
 {
 	"title": "$:/plugins/tiddlywiki/smarkdown",
 	"description": "sMarkdown parser",
-	"author": "JeremyRuston",
-	"core-version": ">=5.0.0",
-	"list": "readme usage"
+	"author": "Jeffrey Wilkinson aka buggyj",
+	"version": "1.13.1",
+	"list": "readme license",
+	"core-version": ">=5.1.13",
+	"source": "https://github.com/buggyj/TW5-other",
+	"plugin-type": "plugin"
 }
