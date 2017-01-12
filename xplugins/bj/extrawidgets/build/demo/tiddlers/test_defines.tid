@@ -1,0 +1,15 @@
+created: 20170112162636199
+modified: 20170112163653966
+tags: 
+title: test defines
+type: text/vnd.tiddlywiki
+
+<$defines $name =head $text="""<h1>title is $a$</h1>
+
+and some!
+""" $params="a">
+
+d<<head ddd>>
+
+d
+</$defines>
