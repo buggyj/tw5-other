@@ -1,0 +1,14 @@
+created: 20170112074517032
+modified: 20170112074938320
+tags: 
+title: New Tiddler 5
+type: text/vnd.tiddlywiki
+
+\define tabs2(tabsList,default,state:"$:/state/tab",class,template)
+<$component $component ="""tabscomponenta""" tabsList="""$tabsList$""" default="""$default$""" class="""$class$"""  template="""$template$""" state="""$state$"""/>
+\end
+
+<<tabs2 tabsList:"testing states ok" default:"testing" >>
+
+====
+<$component $component =tabscomponenta tabsList="settest states ok" default="settest" class=""  template="" state="$:/state/tab1"/>

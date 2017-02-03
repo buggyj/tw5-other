@@ -73,7 +73,7 @@ VarsWidget.prototype.execute = function() {
 	$tw.utils.each(defaults,function(vari) {
 			self.setVariable(vari.name,self.attributes[vari.name]?self.attributes[vari.name]:vari["default"]);
 	});
-	templateTree = [{type: "transclude", attributes: {tiddler: {type: "string", value: this.component}},isBlock:true}];
+	templateTree = [{type: "transbase", attributes: {tiddler: {type: "string", value: this.component}},isBlock:true}];
 	// Construct the child widgets
 	this.makeChildWidgets(templateTree);
 };

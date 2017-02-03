@@ -434,6 +434,13 @@ var mhtmlTagtw = function(tagName, content, attribs, isClosed) {
 			attributes[attr] =  attribs[attr]
 		}
 		}
+		if(tagName.charAt(0) === "h" && (tagName.charAt(1) === "1"||tagName.charAt(1) === "2"||tagName.charAt(1) === "3"||tagName.charAt(1) === "4"||tagName.charAt(1) === "5"||tagName.charAt(1) === "6"))
+			return {
+				type: "element",
+				tag: tagName,
+				attributes:attributes,
+				children: content
+			};
 	return {
 		type: "element",
 		tag: tagName.replace(/^([a-zA-Z\-]*)[0-9]*/,"$1"), 

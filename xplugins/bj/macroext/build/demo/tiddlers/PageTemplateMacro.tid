@@ -1,0 +1,9 @@
+created: 20170112070846838
+modified: 20170112070938774
+tags: $:/tags/Macro
+title: PageTemplateMacro
+type: text/vnd.tiddlywiki
+
+\define containerClasses()
+tc-page-container tc-page-view-$(themeTitle)$ tc-language-$(languageTitle)$
+\end

@@ -1,6 +1,6 @@
 /*\
 title: $:/bj/modules/widgets/widget-extend.js
-type: application/javascriptd
+type: application/javascript
 module-type: global
 
 Extend the base widget to allow extended macro language
@@ -72,7 +72,7 @@ Widget.prototype.computeAttributes = function(changed) {
 		}
 		// Check whether the attribute has changed
 		if (name.charAt(0) === "@") {
-			 value = self.wiki.getTextReference(value,"",self.getVariable("currentTiddler"));
+			 value = self.wiki.getTextReference(value||"","",self.getVariable("currentTiddler"));
 			 name = name.substr(1);
 		 }
 		if(self.attributes[name] !== value) {

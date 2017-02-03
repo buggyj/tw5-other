@@ -1,0 +1,31 @@
+created: 20170111165109480
+modified: 20170112071602814
+title: $:/core/ui/PageTemplate
+type: text/x-smarkdown
+
+
+<$importvariables filter="[[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]">
+
+<$vars tv-config-toolbar-icons={{$:/config/Toolbar/Icons}} tv-config-toolbar-text={{$:/config/Toolbar/Text}} tv-config-toolbar-class={{$:/config/Toolbar/ButtonClass}} themeTitle={{$:/view}} currentTiddler={{$:/language}} languageTitle={{!!name}} currentTiddler ="">
+
+<div class=<<containerClasses>>>
+
+<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}}>
+
+<$dropzone>
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]]" variable="listItem">
+
+<$transclude tiddler=<<listItem>>/>
+
+</$list>
+
+</$dropzone>
+
+</$navigator>
+
+</div>
+
+</$vars>
+
+</$importvariables>

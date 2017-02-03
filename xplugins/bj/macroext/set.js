@@ -1,0 +1,97 @@
+/*\
+title: $:/bj/modules/widgets/set.js
+type: application/javascript
+module-type: widget
+
+Set variable widget override by BJ
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+var Widget = require("$:/core/modules/widgets/widget.js").widget;
+
+var SetWidget = function(parseTreeNode,options) {
+	this.initialise(parseTreeNode,options);
+};
+
+/*
+Inherit from the base widget class
+*/
+SetWidget.prototype = new Widget();
+
+/*
+Render this widget into the DOM
+*/
+SetWidget.prototype.render = function(parent,nextSibling) {
+	this.parentDomNode = parent;
+	this.computeAttributes();
+	this.execute();
+	this.renderChildren(parent,nextSibling);
+};
+
+/*
+Compute the internal state of the widget
+*/
+SetWidget.prototype.execute = function() {
+	// Get our parameters
+	var paramstr,params;
+	this.setName = this.getAttribute("name","currentTiddler");
+	this.setFilter = this.getAttribute("filter");
+	this.setValue = this.getAttribute("value");
+	this.setEmptyValue = this.getAttribute("emptyValue");
+	//add 
+    this.params = this.attributes["params"]||"";
+	paramstr = this.params.split(",");
+
+    params = this.parseTreeNode.params ? this.parseTreeNode.params.slice(0) : [];
+	
+	$tw.utils.each(paramstr,function(val) {
+		params.push({name:val});	
+	});
+	// Set context variable
+	this.setVariable(this.setName,this.getValue(),params);
+	// Construct the child widgets
+	this.makeChildWidgets();
+};
+
+/*
+Get the value to be assigned
+*/
+SetWidget.prototype.getValue = function() {
+	var value = this.setValue;
+	if(this.setFilter) {
+		var results = this.wiki.filterTiddlers(this.setFilter,this);
+		if(!this.setValue) {
+			value = $tw.utils.stringifyList(results);
+		}
+		if(results.length === 0 && this.setEmptyValue !== undefined) {
+			value = this.setEmptyValue;
+		}
+	} else if(!value && this.setEmptyValue) {
+		value = this.setEmptyValue;
+	}
+	return value;
+};
+
+/*
+Selectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering
+*/
+SetWidget.prototype.refresh = function(changedTiddlers) {
+	var changedAttributes = this.computeAttributes();
+	if(changedAttributes.name || changedAttributes.filter || changedAttributes.value || changedAttributes.emptyValue ||
+	   (this.setFilter && this.getValue() != this.variables[this.setName].value)) {
+		this.refreshSelf();
+		return true;
+	} else {
+		return this.refreshChildren(changedTiddlers);
+	}
+};
+
+exports.setvariable = SetWidget;
+exports.set = SetWidget;
+
+})();

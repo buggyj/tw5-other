@@ -1,0 +1,12 @@
+created: 20161018203058031
+modified: 20170111135859085
+tags: 
+title: test tabscomponent1
+tooltip: bo!
+type: text/vnd.twbase;flexibility=M2
+
+<@tabscomponent1 tabsList="testing states ok" default="testing" class="" template="" />
+
+<@tabscomponent1 tabsList="settest states ok" default="settest" class=""  template="" state="$:/state/tab1"/>
+
+<$component $component=tabscomponent1 tabsList="testing states ok" default="testing" class="" template="" />

@@ -1,0 +1,15 @@
+created: 20170112072925647
+modified: 20170112072929624
+tags: $:/tags/PageTemplate
+title: $:/core/ui/PageTemplate/topleftbar
+type: text/x-smarkdown
+
+<span class="tc-topbar tc-topbar-left">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TopLeftBar]!has[draft.of]]" variable="listItem">
+
+<$transclude tiddler=<<listItem>> mode="inline"/>
+
+</$list>
+
+</span>

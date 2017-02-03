@@ -1,16 +1,14 @@
 {
 	"plugins": [
-		"tiddlywiki/tiddlyweb",
-		"tiddlywiki/filesystem",	
-		"bj/smarkdown",
 		"bj/macroext"
 	],
 	"themes": [
 		"tiddlywiki/vanilla",
 		"tiddlywiki/snowwhite"
 	],
-	"doNotSave": [
+		"doNotSave": [
 	],
 	"includeWikis": [
+		"../extlibs"
 	]
 }

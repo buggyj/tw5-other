@@ -1,0 +1,13 @@
+applicationtype: ticket
+caption: 
+created: 20160515195751138
+description: 
+function: undefined
+modified: 20160515195755531
+status: proto
+tags: TicketsBase
+tccaption: 
+title: TicketsBase4
+type: application/json
+
+{"tiddlers":{}}
