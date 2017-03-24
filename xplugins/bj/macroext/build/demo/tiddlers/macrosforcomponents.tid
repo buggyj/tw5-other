@@ -1,8 +1,0 @@
-created: 20170110164611589
-modified: 20170110172745366
-tags: $:/tags/Macro
-title: macrosforcomponents
-type: text/vnd.tiddlywiki
-
-\define cat(x,y,z) $x$$y$$z$
-\define list(x,y,z) $x$ $y$ $z$

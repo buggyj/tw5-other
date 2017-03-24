@@ -1,7 +1,0 @@
-created: 20160405134603255
-modified: 20160508053235132
-tags: patch
-title: $:/bj/ticket/EditTemplate
-type: text/vnd.tiddlywiki
-
-<$transclude tiddler="$:/bj/ticket/EditTemplate/details"/>
