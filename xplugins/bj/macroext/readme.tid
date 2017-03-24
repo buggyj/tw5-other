@@ -1,0 +1,5 @@
+title: $:/plugins/bj/macroext/readme
+
+This extends the types of paramenters that can be given to a macro vars and transclusions, eg
+
+<<mymacro <param1> {param2}>>
