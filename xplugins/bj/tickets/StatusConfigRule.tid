@@ -1,7 +1,0 @@
-created: 20160502123455369
-modified: 20160506084854739
-tags: tclocal
-title: StatusConfigRule
-type: application/json1
-
-[{"#subtid":""},{"#field":"text"},{"#txt":"txt"},{"#newdata":"\n|((*@dateTimeShort*))|((*@getfield(@statusnew,#subtid,#field)*))|((*@getfield(@txt,#subtid,#txt)*))|"}]
