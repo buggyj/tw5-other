@@ -2,9 +2,9 @@
 	"title": "$:/plugins/bj/extrawidgets",
 	"description": "",
 	"author": "Jeffrey Wilkinson aka buggyj",
-	"version": "1.13.1",
+	"version": "1.13.2",
 	"list": "readme license",
 	"core-version": ">=5.1.13",
-	"source": "https://github.com/buggyj/TW5-other",
-	"plugin-type": "plugin"
+	"source": "https://github.com/buggyj/TW5-other on branch extrawidgets",
+	"plugin-type": "plugin" 
 }

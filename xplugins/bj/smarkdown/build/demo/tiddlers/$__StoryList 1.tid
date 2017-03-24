@@ -1,3 +1,0 @@
-<$fields exclude='text bag' template='$name$: $value$
-'></$fields>
-<$view field="text" format="text" />
