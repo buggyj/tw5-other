@@ -1,9 +1,0 @@
-created: 20161106211837428
-modified: 20161106212008784
-tags: $:/tags/Macro
-title: join
-type: text/vnd.tiddlywiki
-
-\define join(x,y) 
-$x$ $y$
-\end
