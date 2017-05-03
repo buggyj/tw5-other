@@ -1,10 +1,10 @@
 created: 20161018203058031
 draft.of: test tabscomponenta
 draft.title: test tabscomponenta
-modified: 20170112074653793
+modified: 20170422214615514
 tags: 
 title: Draft of 'test tabscomponenta'
-type: text/x-smarkdowna
+type: text/x-smarkdown
 
 <@tabscomponenta tabsList="testing states ok" default="testing" class="" template="" />
 

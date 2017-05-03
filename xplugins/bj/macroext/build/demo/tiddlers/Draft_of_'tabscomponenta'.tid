@@ -1,9 +1,9 @@
 created: 20161018202832858
 draft.of: tabscomponenta
-draft.title: 
+draft.title: tabscomponenta
 hide: true
 hide-body: yes
-modified: 20170112071002149
+modified: 20170422214637867
 parameters: tabsList:,  default,  state:"$:/state/tab",  class,  template:"empty"
 tags: 
 title: Draft of 'tabscomponenta'

@@ -1,5 +1,5 @@
 /*\
-title: $:/bj/modules/parsers/wikiparser/rules/html2.js
+title: $:/bj/modules/parsers/wikiparser/rules/html.js
 type: application/javascript
 module-type: wikirule
 
@@ -15,8 +15,8 @@ Wiki rule for HTML elements and widgets. For example:
 "use strict";
 
 var utils = require ("$:/bj/modules/utils/parseutils.js");
-exports.name = "html2";
-exports.types = {user: true};
+exports.name = "html";
+exports.types = {inline: true, block: true};
 
 exports.init = function(parser) {
 	this.parser = parser;

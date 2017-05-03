@@ -54,7 +54,7 @@ Widget.prototype.bjWidget_makevar = function(x) {
 		return x.value;
 	}
 }
-////////////// have to completely change this function ////////////////////
+
 Widget.prototype.computeAttributes = function(changed) {
 	var changedAttributes = {},
 		self = this,
@@ -62,19 +62,18 @@ Widget.prototype.computeAttributes = function(changed) {
 	$tw.utils.each(this.parseTreeNode.attributes,function(attribute,name) {
 		var testname;
 		if(attribute.type === "indirect") {
-			testname= (name.charAt(0) === "@")?name.substr(1):name;
-			if (changed && changed[name] == testname) return;
-			else value = self.wiki.getTextReference(attribute.textReference,"",self.getVariable("currentTiddler"));
+			value = self.wiki.getTextReference(attribute.textReference,"",self.getVariable("currentTiddler"));
 		} else if(attribute.type === "macro") {
 			value = self.getVariable(attribute.value.name,{params: attribute.value.params});
 		} else { // String attribute
 			value = attribute.value;
 		}
-		// Check whether the attribute has changed
+		// deref if requested
 		if (name.charAt(0) === "@") {
 			 value = self.wiki.getTextReference(value||"","",self.getVariable("currentTiddler"));
 			 name = name.substr(1);
 		 }
+		 // Check whether the attribute has changed
 		if(self.attributes[name] !== value) {
 			self.attributes[name] = value;
 			changedAttributes[name] = true;
@@ -82,4 +81,6 @@ Widget.prototype.computeAttributes = function(changed) {
 	});
 	return changedAttributes;
 };
+
+
 })();

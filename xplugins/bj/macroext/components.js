@@ -67,13 +67,20 @@ VarsWidget.prototype.execute = function() {
 	// Parse variables
 	var self = this,templateTree = [];
 	this.component = this.attributes["$component"] ;
+	this.transcludeMode = this.getAttribute("$mode");
+	var parseAsInline = !this.parseTreeNode.isBlock;
+	if(this.transcludeMode === "inline") {
+		parseAsInline = true;
+	} else if(this.transcludeMode === "block") {
+		parseAsInline = false;
+	}	
 	// retrive defaults for merge
 	if (!this.component) return;
 	var defaults = this.getvars(this.component);
 	$tw.utils.each(defaults,function(vari) {
 			self.setVariable(vari.name,self.attributes[vari.name]?self.attributes[vari.name]:vari["default"]);
 	});
-	templateTree = [{type: "transbase", attributes: {tiddler: {type: "string", value: this.component}},isBlock:true}];
+	templateTree = [{type: "transbase", attributes: {tiddler: {type: "string", value: this.component}},isBlock:!parseAsInline}];
 	// Construct the child widgets
 	this.makeChildWidgets(templateTree);
 };

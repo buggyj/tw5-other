@@ -1,9 +1,9 @@
 created: 20170112075000349
-modified: 20170112075007136
+modified: 20170422202642504
 tags: $:/tags/Macro
 title: $:/core/macros/tabs
 type: text/vnd.tiddlywiki
 
 \define tabs(tabsList,default,state:"$:/state/tab",class,template)
-<$component $component ="""tabscomponenta""" tabsList="""$tabsList$""" default="""$default$""" class="""$class$"""  template="""$template$""" state="""$state$"""/>
+<@tabscomponenta tabsList="""$tabsList$""" default="""$default$""" class="""$class$"""  template="""$template$""" state="""$state$"""/>
 \end
