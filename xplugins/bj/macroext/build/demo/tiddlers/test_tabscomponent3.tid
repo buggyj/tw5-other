@@ -1,9 +1,9 @@
 created: 20170110165248445
-modified: 20170422220944107
+modified: 20170601101929782
 tags: 
 title: test tabscomponent3
 tooltip: bo!
-type: text/vnd.twbase;flexibility=M2
+type: text/vnd.twbase;flexibility=M2z
 
 <@tabscomponent3 tabsList="testing states ok" default="testing" class="" template="" />
 

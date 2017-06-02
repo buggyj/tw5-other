@@ -1,11 +1,11 @@
 created: 20161018202832858
 hide: true
 hide-body: yes
-modified: 20170111160752845
+modified: 20170601101925646
 parameters: tabsList:,  default,  state:"$:/state/tab",  class,  template:"empty"
 tags: 
 title: tabscomponenta
-type: text/x-smarkdown
+type: text/vnd.tiddlywiki
 
 <div class=<<list "tc-tab-set" <class>>>>
 <div1 class=<<list "tc-tab-buttons" <class>>>>
