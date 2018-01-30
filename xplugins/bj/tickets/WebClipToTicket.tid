@@ -1,0 +1,8 @@
+tags: TiddlyClipConfig patch
+title: WebClipToTicket
+type: text/vnd.tiddlywiki
+
+\rules only table wikilink prettylink
+
+|!Title|!Body|!Tags|!Fields|!Initvals|!Modes|
+|((*@section*))->((*@pageTitle*))| ((*@web*))|clip||{"$source":"((*@pageRef*))"},{"$clippeddate":"((*@dateTimeLong*))"}|inc add|

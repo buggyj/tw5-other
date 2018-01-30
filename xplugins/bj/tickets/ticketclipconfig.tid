@@ -1,0 +1,10 @@
+title: ticketclipconfig
+type: text/vnd.tiddlywiki
+
+!((*@section*))
+|!Category|!Tip|!Tags|!Rule Tid|!Modes|
+|Tid|copy tids||[[defaultTid]]|tiddlers|
+|Snippy|Copy||[[WebClipToTicket]]||
+|Pin|pin it||[[defaultPin]]||
+|Snap|screen shot||[[defaultSnap]]|snap|
+|Snapy|screen shot||[[defaultSnap]]||
