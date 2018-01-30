@@ -14,7 +14,7 @@ This widget implements components
 
 var Widget = require("$:/core/modules/widgets/widget.js").widget;
 
-var VarsWidget = function(parseTreeNode,options) {
+var bcWgt = function(parseTreeNode,options) {
 	// Call the constructor
 	Widget.call(this);
 	// Initialise	
@@ -24,12 +24,12 @@ var VarsWidget = function(parseTreeNode,options) {
 /*
 Inherit from the base widget class
 */
-VarsWidget.prototype = Object.create(Widget.prototype);
+bcWgt.prototype = Object.create(Widget.prototype);
 
 /*
 Render this widget into the DOM
 */
-VarsWidget.prototype.render = function(parent,nextSibling) {
+bcWgt.prototype.render = function(parent,nextSibling) {
 	this.parentDomNode = parent;
 	this.computeAttributes();
 	this.execute();
@@ -38,7 +38,7 @@ VarsWidget.prototype.render = function(parent,nextSibling) {
 
 
 
-VarsWidget.prototype.getvars = function(component) {
+bcWgt.prototype.getvars = function(component) {
 	var paramString, 
 		tid= this.wiki.getTiddler(component),
 		params = [];
@@ -63,7 +63,7 @@ VarsWidget.prototype.getvars = function(component) {
 /*
 Compute the internal state of the widget
 */
-VarsWidget.prototype.execute = function() {
+bcWgt.prototype.execute = function() {
 	// Parse variables
 	var self = this,templateTree = [];
 	this.component = this.attributes["$component"] ;
@@ -88,7 +88,7 @@ VarsWidget.prototype.execute = function() {
 /*
 Refresh the widget by ensuring our attributes are up to date
 */
-VarsWidget.prototype.refresh = function(changedTiddlers) {
+bcWgt.prototype.refresh = function(changedTiddlers) {
 	var changedAttributes = this.computeAttributes();
 	if(Object.keys(changedAttributes).length||changedTiddlers[this.component] ) {
 		this.refreshSelf();
@@ -97,6 +97,6 @@ VarsWidget.prototype.refresh = function(changedTiddlers) {
 	return this.refreshChildren(changedTiddlers);
 };
 
-exports["component"] = VarsWidget;
-
+exports["component"] = bcWgt;
+exports["bc"] = bcWgt;
 })();

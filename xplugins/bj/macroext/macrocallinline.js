@@ -16,13 +16,13 @@ Wiki rule for macro calls
 /*global $tw: false */
 "use strict";
 
-exports.name = "macrocallinline";
+exports.name = "macrocallinlineext";
 exports.types = {user: true};
 
 exports.init = function(parser) {
 	this.parser = parser;
 	// Regexp to match
-	this.matchRegExp = /<<([^\s>]+)\s*([\s\S]*?)>>/mg;
+	this.matchRegExp = /<<([^\s>]+)\s*([\s\S]*?>?)>>/mg;
 };
 
 /*
@@ -35,7 +35,7 @@ exports.parse = function() {
 	// Move past the macro call
 	this.parser.pos = this.matchRegExp.lastIndex;
 	var params = [],
-		reParam = /\s*(?:([A-Za-z0-9\-_]+)\s*:)?(?:\s*(?:"""([\s\S]*?)"""|"([^"]*)"|'([^']*)'|\[\[([^\]]*)\]\]|<([^>]*)>|\{([^\}]*)\}|([^"'\s]+)))/mg,
+		reParam = /\s*(?:([A-Za-z0-9\-_]+)\s*:)?(?:\s*(?:"""([\s\S]*?)"""|"([^"]*)"|'([^']*)'|\[\[([^\]]*)\]\]|<([^>]*)>|\{([^\}]*)\}|([^\s>}"':]+)))/g,
 		paramMatch = reParam.exec(paramString);
 	while(paramMatch) {
 		// Process this parameter
