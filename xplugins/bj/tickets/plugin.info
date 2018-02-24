@@ -2,7 +2,7 @@
 	"title": "$:/plugins/bj/tickets",
 	"description": "support for tickets",
 	"author": "JeffreyWilkinson aka BJ",
-	"version": "1.15.1",
+	"version": "1.15.2",
 	"dependents":"$:/plugins/bj/visualeditor $:/plugins/bj/typestemplate $:/plugins/bj/tiddlyclip $:/plugins/bj/getvalue $:/plugins/bj/tickets $:/plugins/bj/struc $:/plugins/bj/closedlist",
 	"list": "readme license",
 	"core-version": ">=5.1.15",

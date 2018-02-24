@@ -4,7 +4,7 @@ type: text/vnd.tiddlywiki
 
 <$set name="parentTiddler" value=<<currentTiddler>>> 
 
-<<tabsheader "[[Info]] [[Postits]] [[Logs]] [[Clips]] [[SubTickets]]" "Info">>
+<<tabsheader "[[Info]] [[Postits]] [[Logs]] [[Clips]] [[Pomos]] [[SubTickets]]" "Info">>
 <!---------------------------------------------------------------------------------------------------------------->
 <$reveal type='match' state=<<currentappend '$:/state/tab'>>
 default='Info' text='Info'>
@@ -51,6 +51,23 @@ Dock
 </$createclip>
 <div class="bjc-iframe-clips">
 <<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/postit/listview" subfilter:"tagsub[clip]">>
+</div>
+</$reveal>
+<!---------------------------------------------------------------------------------------------------->
+<$reveal type='match' state=<<currentappend '$:/state/tab'>> text='Pomos'>
+title:<$edit-text tiddler="$:/.bj/temp/forinput" tag="input"/>
+
+time:<$edit-text tiddler="$:/.bj/temp/delay" tag="input"/>
+<$createclip>
+<$button>
+Start Pomo!
+<$action-tiddlydo message ={{$:/.bj/temp/forinput}} title="Good Going!" $delay={{$:/.bj/temp/delay}} $tabletid= "New Items"  $catname="Pomo" start=<<now  """YYYY-0MM-0DD hh:0mm""">> current=<<currentTiddler>>/>
+<$action-setfield $tiddler="$:/.bj/temp/forinput" text=<<storyTiddler>>/>
+<$action-setfield $tiddler="$:/.bj/temp/delay" text="25"/>
+</$button>
+</$createclip>
+<div class="bjc-iframe-clips">
+<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/postit/permalistview" subfilter:"tagsub[Pomos]">>
 </div>
 </$reveal>
 <!---------------------------------------------------------------------------------------------------->
