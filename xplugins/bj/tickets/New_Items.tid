@@ -9,3 +9,5 @@ type: text/vnd.tiddlywiki
 |Postit|||[[PostItConfig]]||
 |savepostit|||[[SavePostit]]||
 |MakeDock|||[[newDockRule]]||
+|Pomo|||[[NotifyRule]]||
+
