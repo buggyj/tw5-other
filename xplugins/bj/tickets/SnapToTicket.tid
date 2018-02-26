@@ -1,0 +1,8 @@
+title: SnapToTicket
+type: text/vnd.tiddlywiki
+
+\rules only table wikilink prettylink
+
+|!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes|
+|null||||{"#ext":"png"},{"%title":"((*@pageTitle*))((*@dateTimeShort*)).((*#ext*))"}|nosave|
+|((*@section*))->((*@pageTitle*))|((*@pageRef*))\n\n[img[((*@csaver(%title,@snap)*))]]\n\n((*@text*))\n\n|clip||{"$location":"((*@pageRef*))"},{"$caption":"((*@pageTitle*))"},{"$when":"((*@dateTimeShort*))"}|inc add|

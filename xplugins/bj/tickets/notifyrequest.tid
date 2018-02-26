@@ -1,0 +1,13 @@
+title: notifyrequest
+type: application/x-bclip
+
+#title=((*@title*))
+#msg=((*@message*))
+#cmd=notify
+#test=((*@send(#cmd,#title,#msg)*))
+#sucess=sent
+#null=((*!#test==#sucess*??*@alert(#test)*))
+#cmd=beep
+#test=((*@send(#cmd)*))
+#1=1
+$num=((*$num+#1*))
