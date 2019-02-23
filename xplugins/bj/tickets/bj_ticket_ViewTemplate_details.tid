@@ -9,7 +9,7 @@ type: text/vnd.tiddlywiki
 <$reveal type='match' state=<<currentappend '$:/state/tab'>>
 default='Info' text='Info'>
 
-|Caption|<$transclude field="caption"/>|
+|Caption|<$link to={{!!caption}}><$transclude field="caption"/></$link>|
 |~TcCaption|<$transclude field="tccaption"/>|
 |Description|<$transclude field="description"/>|
 {{||states}}
@@ -84,3 +84,11 @@ create new Ticket
 </$list>
 </$reveal>
 </$set>
+
+---
+
+<$transclude tiddler={{!!caption}}>
+
+<$link to={{!!caption}}><$transclude field="caption"/></$link>
+
+</$transclude>
