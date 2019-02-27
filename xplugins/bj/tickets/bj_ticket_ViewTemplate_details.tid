@@ -89,6 +89,9 @@ create new Ticket
 
 <$transclude tiddler={{!!caption}}>
 
-<$link to={{!!caption}}><$transclude field="caption"/></$link>
+<$button>
+<$action-sendmessage $message="tm-edit-tiddler" $param={{!!caption}}/>
+Create tiddler for this ticket ({{!!caption}})
+</$button>
 
 </$transclude>
