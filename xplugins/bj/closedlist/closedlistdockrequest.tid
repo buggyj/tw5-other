@@ -1,0 +1,13 @@
+title: closedlistdockrequest
+type: application/x-bclip
+
+#config:={{closelistclipconfig}}
+#name=TiddlyClipConfigalt
+#config=((*@makeobj(#config,#name)*))
+#aux:={{closedlistclipoptions}}
+#name=TiddlyClipOpts
+#aux=((*@makeobj(#aux,#name)*))
+#title=testingtitle
+#dock=dock
+$test=((*@send(#dock,#config,#aux)*))
+

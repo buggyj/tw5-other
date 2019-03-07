@@ -1,0 +1,8 @@
+title: PintoClosedlist
+
+\rules only table wikilink prettylink
+
+|!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes|
+|((*@section*))|||{"$ctags":"((*@addsets($ctags,@extraTags)*))"},{"$tags":""}|{"$type":"application/json"},{"$ctags":"((*@extraTags*))"},{"$applicationtype":"closedlist"},{"$text":"{\"tiddlers\":{}}"}|append add|
+|((*@section*))->((*@pageTitle*))|((*@pageRef*))\n\n[img[((*@onImage*??*@imageURL*??*@largestImgURL*))]]\n\n((*@text*))\n\n((*@exists(@userstring)*??*@userstring*))|||{"$location":"((*@pageRef*))"},{"$caption":"((*@pageTitle*))"},{"$when":"((*@dateTimeShort*))"}|inc add|
+
