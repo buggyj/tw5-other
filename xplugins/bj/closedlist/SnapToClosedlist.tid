@@ -1,0 +1,8 @@
+title: SnapToClosedlist
+
+\rules only table wikilink prettylink
+
+|!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes|
+|((*@category1stWord*))/Clips|||{"$ctags":"((*@addsets($ctags,@extraTags)*))"},{"$tags":""}|{"$type":"application/json"},{"$ctags":"((*@extraTags*))"},{"$applicationtype":"closedlist"},{"$text":"{\"tiddlers\":{}}"}|append add|
+|null||||{"#ext":"png"},{"%title":"((*@pageTitle*))((*@dateTimeShort*)).((*#ext*))"}|nosave|
+|((*@category1stWord*))/Clips->((*@pageTitle*))|((*@pageRef*))\n\n[img[((*@csaver(%title,@snap)*))]]\n\n((*@text*))\n\n\n\n((*@note*))|||{"$location":"((*@pageRef*))"},{"$caption":"((*@pageTitle*))"},{"$when":"((*@dateTimeShort*))"}|inc add|

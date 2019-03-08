@@ -3,9 +3,9 @@
 	"description": "view and edit subtiddlers lists",
 	"author": "JeffreyWilkinson aka bj",
 	"tags": "$:/plugins/bj/typestemplate $:/plugins/bj/visualeditor",
-	"version": "1.11.5",
+	"version": "1.17.1",
 	"list": "license readme",
-	"core-version": ">=5.1.11",
+	"core-version": ">=5.1.17",
 	"source": "https://github.com/buggyj/TW5-other",
 	"plugin-type": "plugin"
 }
