@@ -27,8 +27,9 @@ Dock
 <$list filter="[enlist{!!ctags}]" variable="listTiddler">{{||$:/bj/closedlist/viewtemplate/tags}}</$list>
 
 <$vars parentTiddler=<<currentTiddler>>>
-<$vars subtag={{!!state}}><<closedlisttime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/postit/listview" subfilter:"tagsub<subtag>">>
+<$vars subtag={{!!state}}><<closedlisttime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listview" subfilter:"tagsub<subtag>">>
 
 </$vars>
 </$vars>
 </$reveal>
+
