@@ -1,4 +1,4 @@
-title: bj/macros/closedlisttime
+title:$:/bj/macros/closedlisttime
 tags: $:/tags/Macro
 
 \define closedlisttime(limit:"100",format:"DDth MMM YYYY",subfilter,dateField:"modified",template) 

@@ -1,6 +1,8 @@
-title: closedlist
+title: $:/bj/closedlist
 
 |!Category|!Tip|!Tags|!Rule Tid|!Modes|
-|MakeDock|||[[closedlistDockRule]]||
+|MakeDock|||[[$:/bj/closedlistDockRule]]||
+|MakeNewList|||[[$:/bj/NewListRule]]||
+
 
 

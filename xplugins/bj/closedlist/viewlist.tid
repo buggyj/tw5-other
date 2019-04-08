@@ -3,7 +3,7 @@ title: $:/bj/closedlist/ViewTemplate/body/list
 <$createclip>
 <$button>
 Dock
-<$action-tiddlydo  $tabletid= "closedlist"  $catname="MakeDock" section=<<currentTiddler>> tags={{!!tagoptions}}/>
+<$action-tiddlydo  $tabletid= "$:/bj/closedlist"  $catname="MakeDock" section=<<currentTiddler>> tags={{!!tagoptions}}/>
 </$button>
 </$createclip>
 <$reveal type="nomatch" state=<<qualify x>> text="show">
@@ -13,15 +13,11 @@ Dock
 <$list filter="[tag[ListWidget]sort[title]]"/>
 <$vars parentTiddler=<<currentTiddler>>>
 
-<$list filter="[all[current]plugintiddlers[]sort[title]]" class='btn btn-primary'>
-{{!!title||$:/bj/closedlist/listview}}
-</$list>
+<<closedlisttime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listview">>
 
 </$vars>
 </$reveal>
-
 <$reveal type="match" state=<<qualify x>> text="show">
-
 <$button set=<<qualify x>> setTo="hide">all</$button>
 
 <$list filter="[enlist{!!ctags}]" variable="listTiddler">{{||$:/bj/closedlist/viewtemplate/tags}}</$list>
@@ -32,4 +28,5 @@ Dock
 </$vars>
 </$vars>
 </$reveal>
+
 
