@@ -1,13 +1,12 @@
-tags: tclocal patch
 title: New Items
 type: text/vnd.tiddlywiki
 
 |!Category|!Tip|!Tags|!Rule Tid|!Modes|
-|Ticket|||[[CreateTicketRule]]||
-|Status|||[[StatusConfig]]||
-|Logs|||[[TicketLogConfig]]||
-|Postit|||[[PostItConfig]]||
-|savepostit|||[[SavePostit]]||
-|MakeDock|||[[newDockRule]]||
-|Pomo|||[[NotifyRule]]||
+|Ticket|||[[$:/bj/CreateTicketRule]]||
+|Status|||[[$:/bj/StatusConfig]]||
+|Logs|||[[$:/bj/TicketLogConfig]]||
+|Postit|||[[$:/bj/PostItConfig]]||
+|savepostit|||[[$:/bj/SavePostit]]||
+|MakeDock|||[[$:/bj/newDockRule]]||
+|Pomo|||[[$:/bj/NotifyRule]]||
 

@@ -1,10 +1,7 @@
-created: 20160404161258989
-modified: 20160505062721342
-tags: tclocal patch
-title: CreateTicketRule
+title: $:/bj/CreateTicketRule
 type: text/vnd.tiddlywiki
 
 \rules only table wikilink prettylink 
 
 |!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes|
-|null|{\"tiddlers\":{}}||{"#applicationtype":"ticket"},{ "#title": "((*@newtickettitle(@parentTicket)*))" }, {"$title": "Draft of '((*#title*))'" }, {"$type":"application/json"}, {"$tags":"((*@parentTicket*)) ((*#applicationtype*))"},{"$applicationtype":"((*#applicationtype*))"},{"$description":""}, {"$status":"proto"}, {"$draft.of":"((*#title*))"}, {"$draft.title":"((*#title*))"},{"$function":"undefined"}, {"$caption":""}, {"$tccaption":""}||add inc open|				
+|null|{\"tiddlers\":{}}||{"#applicationtype":"ticket"},{ "#title": "((*@newtickettitle(@parentTicket)*))" }, {"$title": "Draft of '((*#title*))'" }, {"$type":"application/json"}, {"$tags":"((*@parentTicket*)) ((*#applicationtype*))"},{"$applicationtype":"((*#applicationtype*))"},{"$description":""}, {"$status":"proto"}, {"$draft.of":"((*#title*))"}, {"$draft.title":"((*#title*))"},{"$function":"undefined"}, {"$caption":""}, {"$tccaption":""}||add inc open|

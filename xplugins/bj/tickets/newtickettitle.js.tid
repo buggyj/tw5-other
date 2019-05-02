@@ -1,6 +1,6 @@
 module-type: library
-tags: $:/tags/tiddlyclip patch
-title: newtickettitle.js
+tags: $:/tags/tiddlyclip
+title: $:/bj/newtickettitle.js
 type: application/javascript
 
 exports.name ="newtickettitle"; 

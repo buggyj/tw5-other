@@ -1,9 +1,8 @@
-title: ticketclipconfig
+title: $:/bj/ticketclipconfig
 type: text/vnd.tiddlywiki
 
 !((*@section*))
 |!Category|!Tip|!Tags|!Rule Tid|!Modes|
-|Snippy|Copy||[[WebClipToTicket]]||
-|Pinny|pin it||[[PintoTicket]]||
-|Snappy|screen shot||[[SnapToTicket]]|snap|
-
+|Snippy|Copy||[[$:/bj/WebTextclipticket]]|note|
+|Pinny|pin it||[[$:/bj/PinToTicket]]|note|
+|Snappy|screen shot||[[$:/bj/SnapToTicket]]|note snap|

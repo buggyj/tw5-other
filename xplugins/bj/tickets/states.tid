@@ -1,10 +1,7 @@
-created: 20160429152744881
-modified: 20160507124307312
 states: new accepted assigned parked reopened closed leave
 todo: planning doing done
 tickettypes: states todo
-tags: patch
-title: states
+title: ticketstates
 type: text/vnd.tiddlywiki
 
 

@@ -1,11 +1,10 @@
-tags: examples
-title: newdockrequest
+title: $:/bj/newdockrequest
 type: application/x-bclip
 
-#config:={{ticketclipconfig}}
+#config:={{$:/bj/ticketclipconfig}}
 #name=TiddlyClipConfigalt
 #config=((*@makeobj(#config,#name)*))
-#aux:={{ticketclipoptions}}
+#aux:={{$:/bj/ticketclipoptions}}
 #name=TiddlyClipOpts
 #aux=((*@makeobj(#aux,#name)*))
 #title=testingtitle

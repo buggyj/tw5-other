@@ -1,8 +1,8 @@
-tags: TiddlyClipConfig patch
-title: WebClipToTicket
+title: $:/bj/WebTextclipticket
 type: text/vnd.tiddlywiki
 
 \rules only table wikilink prettylink
 
 |!Title|!Body|!Tags|!Fields|!Initvals|!Modes|
-|((*@section*))->((*@pageTitle*))| ((*@web*))|clip||{"$source":"((*@pageRef*))"},{"$clippeddate":"((*@dateTimeLong*))"}|inc add|
+|((*@section*))|||{"#ctags":"((*$ctags*))"},{"$ctags":"((*@addsets(#ctags,@extraTags)*))"}|{"$ctags":"((*@extraTags*))"}|append add|
+|((*@section*))->((*@pageTitle*))|((*@web*))\n\n((*@note*))|clip||{"#tags":"((*$tags*))"},{"$tags":"((*@addsets(#tags,@extraTags)*))"},{"$location":"((*@pageRef*))"},{"$when":"((*@dateTimeShort*))"}|inc add|

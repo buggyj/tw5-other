@@ -1,5 +1,7 @@
-title: ticketclipoptions
-type: text/vnd.tiddlywiki
+title: $:/bj/ticketclipoptions
+type: application/x-tiddler-dictionary
 
+noautoextratags:yes
 menuShowTitle:true
-tags:amust,background
+tags:((*@tags*))
+
