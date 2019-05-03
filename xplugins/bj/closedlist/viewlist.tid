@@ -6,8 +6,8 @@ Dock
 <$action-tiddlydo  $tabletid= "$:/bj/closedlist"  $catname="MakeDock" section=<<currentTiddler>> tags={{!!tagoptions}}/>
 </$button>
 </$createclip>
-<$reveal type="nomatch" state=<<qualify x>> text="show">
-<$button set=<<qualify x>> setTo="show">by tags</$button>
+<$reveal type="nomatch" state=<<qualify  "$:/state/x">> text="show">
+<$button set=<<qualify "$:/state/x">> setTo="show">by tags</$button>
 
 
 <$list filter="[tag[ListWidget]sort[title]]"/>
@@ -17,8 +17,8 @@ Dock
 
 </$vars>
 </$reveal>
-<$reveal type="match" state=<<qualify x>> text="show">
-<$button set=<<qualify x>> setTo="hide">all</$button>
+<$reveal type="match" state=<<qualify "$:/state/x">> text="show">
+<$button set=<<qualify "$:/state/x">> setTo="hide">all</$button>
 
 <$list filter="[enlist{!!ctags}]" variable="listTiddler">{{||$:/bj/closedlist/viewtemplate/tags}}</$list>
 
@@ -28,5 +28,8 @@ Dock
 </$vars>
 </$vars>
 </$reveal>
+
+
+
 
 

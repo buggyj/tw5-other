@@ -3,5 +3,5 @@ title: $:/bj/WebTextclosedlist
 \rules only table wikilink prettylink
 
 |!Title|!Body|!Tags|!Fields|!Initvals|!Modes|
-|((*@section*))|||{"$ctags":"((*@addsets($ctags,@extraTags)*))"},{"$tags":""}|{"$type":"application/json"},{"$ctags":"((*@extraTags*))"},{"$applicationtype":"closedlist"},{"$text":"{\"tiddlers\":{}}"}|append add|
+|((*@section*))|||{"#ctags":"((*$ctags*))"},{"$ctags":"((*@addsets(#ctags,@extraTags)*))"},{"$tags":""}|{"$type":"application/json"},{"$ctags":"((*@extraTags*))"},{"$applicationtype":"closedlist"},{"$text":"{\"tiddlers\":{}}"}|append add|
 |((*@section*))->((*@pageTitle*))|((*@web*))\n\n\n\n((*@note*))|||{"$type":"text/html"},{"$source":"((*@pageRef*))"},{"$clippeddate":"((*@dateTimeLong*))"}|inc add|
