@@ -1,0 +1,20 @@
+title: bj/macros/tickettimenew
+tags: $:/tags/Macro
+
+\define tickettimenew(limit:"100",format:"DDth MMM YYYY",subfilter,dateField:"created",template) 
+<$set name="myFilter" value="$subfilter$">
+<div class="tc-timeline">
+<$vars currentTag="$tag$">
+<$view tiddler=<<parentTiddler>> subtiddler =<<currentTiddler>> field="$dateField$" format="date" template="$format$"/>
+<$vars mysameday=<<getfield tiddler:"<parentTiddler>" subtiddler:"<currentTiddler>" field:"$dateField$" >>>
+<$list filter="[plugin<parentTiddler>newsubfilter<myFilter>]">
+{{||$template$}}
+</$list>
+</$vars>
+</$vars>
+</div>
+</$set>
+\end
+
+
+
