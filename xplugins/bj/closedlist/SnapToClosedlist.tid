@@ -3,6 +3,6 @@ title: $:/bj/SnapToClosedlist
 \rules only table wikilink prettylink
 
 |!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes|
-|((*@section*))|||{"$ctags":"((*@addsets($ctags,@extraTags)*))"},{"$tags":""}|{"$type":"application/json"},{"$ctags":"((*@extraTags*))"},{"$applicationtype":"closedlist"},{"$text":"{\"tiddlers\":{}}"}|append add|
+|((*@section*))|||{"#ctags":"((*$ctags*))"},{"#notag":"notag"},{"#extraTags":"((*@exists(@extraTags)*??*@extraTags*??*#notag*))"},{"$ctags":"((*@addsets(#ctags,#extraTags)*))"},{"$tags":""}|{"$type":"application/json"},{"$ctags":"((*@extraTags*))"},{"$applicationtype":"closedlist"},{"$text":"{\"tiddlers\":{}}"}|append add|
 |null||||{"#ext":"png"},{"%title":"((*@pageTitle*))((*@dateTimeShort*)).((*#ext*))"}|nosave|
-|((*@section*))->((*@pageTitle*))|[img[((*@csaver(%title,@snap)*))]]\n\n((*@text*))\n\n\n\n((*@note*))|||{"$source":"((*@pageRef*))"},{"$caption":"((*@pageTitle*))"},{"$when":"((*@dateTimeShort*))"}|inc add|
+|((*@section*))->((*@pageTitle*))|[img[((*@csaver(%title,@snap)*))]]\n\n((*@text*))\n\n\n\n((*@note*))|||{"#tags":"((*$tags*))"},{"#notag":"notag"},{"#extraTags":"((*@exists(@extraTags)*??*@extraTags*??*#notag*))"},{"$tags":"((*#tags*)) ((*#extraTags*))"},{"$source":"((*@pageRef*))"},{"$clippeddate":"((*@dateTimeShort*))"}|inc add|

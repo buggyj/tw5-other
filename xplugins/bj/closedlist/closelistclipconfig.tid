@@ -2,7 +2,7 @@ title: $:/bj/closelistclipconfig
 
 !((*@section*))
 |!Category|!Tip|!Tags|!Rule Tid|!Modes|
-|Snippy|Copy|clips|[[$:/bj/WebTextclosedlist]]|note|
-|Pinny|pin it|clips|[[$:/bj/PintoClosedlist]]|note|
-|Snappy|screen shot|clips|[[$:/bj/SnapToClosedlist]]|snap note|
+|Snippy|Copy||[[$:/bj/WebTextclosedlist]]|note|
+|Pinny|pin it||[[$:/bj/PintoClosedlist]]|note|
+|Snappy|screen shot||[[$:/bj/SnapToClosedlist]]|snap note|
 
