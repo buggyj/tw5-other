@@ -1,5 +1,5 @@
 tags: $:/tags/Macro
-title: bj/macros/tickettime
+title: $:/bj/macros/tickettime
 type: text/vnd.tiddlywiki
 
 \define tickettime(limit:"100",format:"DDth MMM YYYY",subfilter,dateField:"modified",template) 

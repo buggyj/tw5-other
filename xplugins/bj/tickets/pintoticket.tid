@@ -4,5 +4,6 @@ type: text/vnd.tiddlywiki
 \rules only table wikilink prettylink
 
 |!Title|!Body|!Tags|!Fields|!initials|!Modes|
-|((*@section*))|||{"#ctags":"((*$ctags*))"},{"$ctags":"((*@addsets(#ctags,@extraTags)*))"}|{"$ctags":"((*@extraTags*))"}|append add|
-|((*@section*))->((*@pageTitle*))|((*@pageRef*))\n\n[img[((*@onImage*??*@imageURL*??*@largestImgURL*))]]\n\n((*@text*))\n\n((*@exists(@userstring)*??*@userstring*))\n\n((*@note*))|clip||{"#tags":"((*$tags*))"},{"$tags":"((*@addsets(#tags,@extraTags)*))"},{"$location":"((*@pageRef*))"},{"$when":"((*@dateTimeShort*))"}|inc add|
+|null||||{"#notag":"notag"},{"%extraTags":"((*@exists(@extraTags)*??*@extraTags*??*#notag*))"}|nosave|
+|((*@section*))|||{"#ctags":"((*$ctags*))"},{"$ctags":"((*@addsets(#ctags,%extraTags)*))"}|{"$ctags":"((*@extraTags*))"}|append add|
+|((*@section*))->((*@pageTitle*))|((*@pageRef*))\n\n[img[((*@onImage*??*@imageURL*??*@largestImgURL*))]]\n\n((*@text*))\n\n((*@exists(@userstring)*??*@userstring*))\n\n((*@note*))|clip||{"#tags":"((*$tags*))"},{"#extraTags":"((*@exists(@extraTags)*??*@extraTags*))"},{"$tags":"((*@addsets(#tags,#extraTags)*))"},{"$location":"((*@pageRef*))"},{"$when":"((*@dateTimeShort*))"}|inc add|

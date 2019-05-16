@@ -1,8 +1,6 @@
 title: $:/bj/ticket/ViewTemplate/details
 type: text/vnd.tiddlywiki
 
-\define maketagsub(x)<<tickettimenew format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/postit/listview" subfilter:"[tagsub[clip]]-[!tagsub[$x$]]">>
-
 <$set name="parentTiddler" value=<<currentTiddler>>>  
 
 <<tabsheader "[[Info]] [[Postits]] [[Logs]] [[Clips]] [[Pomos]] [[SubTickets]]" "Info">>
