@@ -1,13 +1,13 @@
 title:$:/bj/macros/closedlisttime
 tags: $:/tags/Macro
 
-\define closedlisttime(limit:"100",format:"DDth MMM YYYY",subfilter,dateField:"modified",template) 
+\define closedlisttime(limit:"100",format:"DDth MMM YYYY",subtag:"",dateField:"modified",template) 
 <div class="tc-timeline">
 <$vars currentTag="$tag$">
-<$list filter="[plugin<parentTiddler>$subfilter$eachday[$dateField$]]">
+<$list filter="[plugin<parentTiddler>tagsub[$subtag$]eachday[$dateField$]]">
 <$view tiddler=<<parentTiddler>> subtiddler =<<currentTiddler>> field="$dateField$" format="date" template="$format$"/>
 <$vars mysameday=<<getfield tiddler:"<parentTiddler>" subtiddler:"<currentTiddler>" field:"$dateField$" >>>
-<$list filter="[plugin<parentTiddler>$subfilter$sameday:$dateField$<mysameday>]">
+<$list filter="[plugin<parentTiddler>tagsub[$subtag$]sameday:$dateField$<mysameday>]">
 {{||$template$}}
 </$list>
 </$vars>
