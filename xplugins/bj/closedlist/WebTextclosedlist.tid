@@ -3,5 +3,6 @@ title: $:/bj/WebTextclosedlist
 \rules only table wikilink prettylink
 
 |!Title|!Body|!Tags|!Fields|!Initvals|!Modes|
-|((*@section*))|||{"#ctags":"((*$ctags*))"},{"#notag":"notag"},{"#extraTags":"((*@exists(@extraTags)*??*@extraTags*??*#notag*))"},{"$ctags":"((*@addsets(#ctags,#extraTags)*))"},{"$tags":""}|{"$type":"application/json"},{"#notag":"notag"},{"#extraTags":"((*@exists(@extraTags)*??*@extraTags*??*#notag*))"},{"$ctags":"((*#extraTags*))"},{"$applicationtype":"closedlist"},{"$text":"{\"tiddlers\":{}}"}|append add|
-|((*@section*))->((*@pageTitle*))|((*@web*))\n\n\n\n((*@note*))|||{"#tags":"((*$tags*))"},{"#notag":"notag"},{"#extraTags":"((*@exists(@extraTags)*??*@extraTags*??*#notag*))"},{"$tags":"((*#tags*)) ((*#extraTags*))"},{"$source":"((*@pageRef*))"},{"$clippeddate":"((*@dateTimeShort*))"}|inc add|
+|null||||[[$:/bj/SnapToClosedlistInitVals]]|nosave|
+|((*@section*))|||{"#ctags":"((*$ctags*))"},{"$ctags":"((*@addsets(#ctags,%extraTags)*))"}|{"$type":"application/json"},{"$ctags":"((*%extraTags*))"},{"$applicationtype":"closedlist"},{"$text":"{\"tiddlers\":{}}"}|append add|
+|((*@section*))->((*@pageTitle*))|((*@onImage*??*%onImage*))((*%web*))\n\n\n\n((*@note*))|||{"#extraTags":"((*@exists(@extraTags)*??*@extraTags*))"},{"#tags":"((*$tags*))"},{"$tags":"((*@addsets(#tags,#extraTags)*))"},{"$source":"((*@pageRef*))"},{"$clippeddate":"((*@dateTimeShort*))"}|inc add|
