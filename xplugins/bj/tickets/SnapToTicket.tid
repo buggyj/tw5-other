@@ -7,4 +7,4 @@ type: text/vnd.tiddlywiki
 |null||||{"#notag":"notag"},{"%extraTags":"((*@exists(@extraTags)*??*@extraTags*??*#notag*))"}|nosave|
 |((*@section*))|||{"#ctags":"((*$ctags*))"},{"$ctags":"((*@addsets(#ctags,%extraTags)*))"}|{"$ctags":"((*@extraTags*))"}|append add|
 |null||||{"#ext":"png"},{"%title":"((*@pageTitle*))((*@dateTimeShort*)).((*#ext*))"}|nosave|
-|((*@section*))->((*@pageTitle*))|((*@pageRef*))\n\n[img[((*@csaver(%title,@snap)*))]]\n\n((*@text*))\n\n((*@exists(@userstring)*??*@userstring*))\n\n((*@note*))|clip||{"#tags":"((*$tags*))"},{"#extraTags":"((*@exists(@extraTags)*??*@extraTags*))"},{"$tags":"((*@addsets(#tags,#extraTags)*))"},{"$location":"((*@pageRef*))"},{"$when":"((*@dateTimeShort*))"}|inc add|
+|((*@section*))->((*@pageTitle*))|((*@cptext*))\n\n[img[((*@csaver(%title,@snap)*))]]\n\n((*@text*))\n\n((*@exists(@userstring)*??*@userstring*))\n\n((*@note*))|clip||{"#tags":"((*$tags*))"},{"#extraTags":"((*@exists(@extraTags)*??*@extraTags*))"},{"$tags":"((*@addsets(#tags,#extraTags)*))"},{"$location":"((*@pageRef*))"},{"$when":"((*@dateTimeShort*))"}|inc add|

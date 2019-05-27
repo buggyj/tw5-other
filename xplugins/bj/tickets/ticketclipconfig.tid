@@ -4,5 +4,6 @@ type: text/vnd.tiddlywiki
 !((*@section*))
 |!Category|!Tip|!Tags|!Rule Tid|!Modes|
 |Snippy|Copy||[[$:/bj/WebTextclipticket]]|note|
-|Pinny|pin it||[[$:/bj/PinToTicket]]|note|
 |Snappy|screen shot||[[$:/bj/SnapToTicket]]|note snap|
+|Cptext||||cptext|
+|text2note||||text2note|
