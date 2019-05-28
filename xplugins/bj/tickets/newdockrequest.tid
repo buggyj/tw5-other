@@ -1,7 +1,9 @@
 title: $:/bj/newdockrequest
 type: application/x-bclip
 
-#config:={{$:/bj/ticketclipconfig}}
+#conf:={{$:/bj/ticketclipconfig}}
+#tcconf:={{TiddlyClipConfig}}
+#config=((*#conf*))((*#tcconf*))
 #name=TiddlyClipConfigalt
 #config=((*@makeobj(#config,#name)*))
 #aux:={{$:/bj/ticketclipoptions}}
