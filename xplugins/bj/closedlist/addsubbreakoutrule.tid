@@ -1,0 +1,5 @@
+title: $:/bj/AddsubBreakoutRule
+
+#tags=((*$tags*))
+#mastertags:={{((*@tiddler*))!!tagoptions}}
+$tags=((*@inset(#mastertags,@newtag)*??*@addsets(#tags,@newtag)*??*@abort()*))
