@@ -28,8 +28,8 @@ Run the macro
 exports.run = function(x) {
 
 if (x=="notag") 
-	return '<<tickettimenew format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/postit/listview" subfilter:"[tagsub[clip]]-[!field:tags[clip]]">>';
+	return '<<tickettimenew format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/clip/listview" subfilter:"[tagsub[clip]]-[!field:tags[clip]]">>';
 
-return '<<tickettimenew format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/postit/listview" subfilter:"[tagsub[clip]]-[!tagsub['+x+']]">>';
+return '<<tickettimenew format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/clip/listview" subfilter:"[tagsub[clip]]-[!tagsub['+x+']]">>';
 }
 })();
