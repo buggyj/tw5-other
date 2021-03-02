@@ -9,4 +9,6 @@ type: text/vnd.tiddlywiki
 |savepostit|||[[$:/bj/SavePostit]]||
 |MakeDock|||[[$:/bj/newDockRule]]||
 |Pomo|||[[$:/bj/NotifyRule]]||
+|addtag|||[[$:/bj/AddsubtagRule]]||
+|removetag|||[[$:/bj/RemovesubtagRule]]||
 

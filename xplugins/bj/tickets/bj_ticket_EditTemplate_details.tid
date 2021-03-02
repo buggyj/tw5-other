@@ -34,11 +34,11 @@ type: text/vnd.tiddlywiki
 <!---------------------------------------------------------------------------------------------------->
 <$reveal type='match' state=<<currentappend '$:/state/tab'>> default='Info' text='Postits'>
 
-<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listedit" subfilter:"tagsub[postit]">>
+<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listedit" subfilter:"tagsub[__postit__]">>
 </$reveal>
 <!---------------------------------------------------------------------------------------------------->
 <$reveal type='match' state=<<currentappend '$:/state/tab'>> default='Info' text='Logs'>
-<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listedit" subfilter:"tagsub[log]">>
+<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listedit" subfilter:"tagsub[__log__]">>
 </$reveal>
 <!---------------------------------------------------------------------------------------------------->
 <$reveal type='match' state=<<currentappend '$:/state/tab'>> default='Info' text='Clips'>
@@ -46,7 +46,8 @@ type: text/vnd.tiddlywiki
 </$reveal>
 <!---------------------------------------------------------------------------------------------------->
 <$reveal type='match' state=<<currentappend '$:/state/tab'>> default='Info' text='Pomos'>
-<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listedit" subfilter:"tagsub[Pomos]">>
+<<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/closedlist/listedit" subfilter:"tagsub[__Pomos__]">>
 </$reveal>
 </$set>
+
 

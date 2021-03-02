@@ -4,4 +4,4 @@ type: text/vnd.tiddlywiki
 \rules only table wikilink prettylink
 
 |!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes |
-|Not Used||log|{"#totaltitle":"((*@current*))->log"}, { "#leaftitle": "((*@newleaftitle(#totaltitle)*))" }, {"$title": "Draft of '((*@current*))->((*#leaftitle*))'" }, {"$draft.of":"((*@current*))->((*#leaftitle*))"}, {"$draft.title":"((*#leaftitle*))"}, {"$applicationtype":"ticketlog"}, {"$text":""}||inc add open|
+|Not Used||__log__|{"#totaltitle":"((*@current*))->__log__"}, { "#leaftitle": "((*@newleaftitle(#totaltitle)*))" }, {"$title": "Draft of '((*@current*))->((*#leaftitle*))'" }, {"$draft.of":"((*@current*))->((*#leaftitle*))"}, {"$draft.title":"((*#leaftitle*))"}, {"$applicationtype":"ticketlog"}, {"$text":""}||inc add open|

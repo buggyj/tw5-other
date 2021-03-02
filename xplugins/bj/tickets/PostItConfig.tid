@@ -4,4 +4,4 @@ type: text/vnd.tiddlywiki
 \rules only table wikilink prettylink
 
 |!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes |
-|Not Used||postit|{"#totaltitle":"((*@current*))->Postit"}, { "#leaftitle": "((*@newleaftitle(#totaltitle)*))" }, {"$title": "Draft of '((*@current*))->((*#leaftitle*))'" }, {"$draft.of":"((*@current*))->((*#leaftitle*))"}, {"$draft.title":"((*#leaftitle*))"}, {"$applicationtype":"postit"}, {"$text":""}||inc add open|
+|Not Used||__postit__|{"#totaltitle":"((*@current*))->__postit__"}, { "#leaftitle": "((*@newleaftitle(#totaltitle)*))" }, {"$title": "Draft of '((*@current*))->((*#leaftitle*))'" }, {"$draft.of":"((*@current*))->((*#leaftitle*))"}, {"$draft.title":"((*#leaftitle*))"}, {"$applicationtype":"postit"}, {"$text":""}||inc add open|
