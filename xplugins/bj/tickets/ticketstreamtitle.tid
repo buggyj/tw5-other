@@ -1,0 +1,6 @@
+title: $:/bj/TicketStreamtitle
+type: application/x-bclip
+
+#tid=$:/config/NewJournal/Title
+#format=((*@get(#tid)*))
+$title=((*@section*))->((*@now(#format)*))

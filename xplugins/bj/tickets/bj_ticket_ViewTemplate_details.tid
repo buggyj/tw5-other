@@ -3,7 +3,7 @@ type: text/vnd.tiddlywiki
 
 <$set name="parentTiddler" value=<<currentTiddler>>>  
 
-<<tabsheader "[[Info]] [[Postits]] [[Logs]] [[Clips]] [[Pomos]] [[SubTickets]]" "Info">>
+<<tabsheader "[[Info]] [[Postits]] [[Logs]] [[Streams]] [[Clips]] [[Pomos]] [[SubTickets]]" "Info">>
 <!---------------------------------------------------------------------------------------------------------------->
 <$reveal type='match' state=<<currentappend '$:/state/tab'>>
 default='Info' text='Info'>
@@ -39,6 +39,14 @@ create new Log
 </$createclip>
 
 <<tickettime format:"DDth MMM YYYY" dateField:"modified" template:"$:/bj/ticketlog/listview" subfilter:"tagsub[__log__]">>
+</$reveal>
+<!---------------------------------------------------------------------------------------------------->
+<$reveal type='match' state=<<currentappend '$:/state/tab'>> default='Info' text='Streams'>
+
+<$list filter="[plugin<parentTiddler>tagsub[__stream__]]">
+{{||$:/bj/stream/listview}}
+</$list>
+ 
 </$reveal>
 <!---------------------------------------------------------------------------------------------------->
 <$reveal type='match' state=<<currentappend '$:/state/tab'>> text='Clips'>

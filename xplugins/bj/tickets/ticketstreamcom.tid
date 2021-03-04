@@ -1,0 +1,5 @@
+title: $:/bj/TicketStreamCom
+type: text/vnd.tiddlywiki
+
+|!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes|
+|[[$:/bj/TicketStreamtitle]]|[[$:/bj/TicketStreamComment]]||{"#timefmt":"hh"},{"$mytime":"((*@now(#timefmt)*)).00"}|{"#timefmt":"hh"},{"$mytime":"((*@now(#timefmt)*)).00"}|append add|

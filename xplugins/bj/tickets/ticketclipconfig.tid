@@ -7,3 +7,5 @@ type: text/vnd.tiddlywiki
 |Snappy|screen shot||[[$:/bj/SnapToTicket]]|note snap|
 |Cptext||||cptext|
 |text2note||||text2note|
+|ticketStream||__stream__|$:/bj/TicketStreamCom|userstring|
+|ticketStreamclip||__stream__|$:/bj/TicketStreamR|userstring|

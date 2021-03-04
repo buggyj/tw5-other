@@ -1,0 +1,8 @@
+title: $:/bj/TicketStreamDet
+type: application/x-bclip
+
+#nl=\n
+#false=false
+#timefmt=hh
+#time=((*@now(#timefmt)*)).00
+#newdata=((*!$mytime==#time*??*#nl*))((*@newtiddler*??*#time*))((*!$mytime==#time*??*#time*))\n\n((*@pageRef*))\n\n...((*@text*))...\n\n ((*@userstring*))\n\n------
