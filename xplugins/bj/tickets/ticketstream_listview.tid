@@ -1,17 +1,20 @@
 title: $:/bj/stream/listview
 type: text/vnd.tiddlywiki
 
-\define parentappend(y) $y$$(parentTiddler)$ 
+\define parentappend(y) $y$$(parentTiddler)$
+\define appendtoparent() $(parentTiddler)$  $(currentTiddler)$
+
+
 <div class="tc-taglist">
 <$linkcatcher  message="refresh" to=<<parentappend "$:/temp/priv/">>  >
-<$reveal state=<<parentappend "$:/temp/priv/">> text={{!!title}} type="match">
-    <$link to=""><$view  tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>> field="caption"><$view field="title"/></$view></$link>
+<$reveal state=<<parentappend "$:/temp/priv/">> text=<<appendtoparent>> type="match">
+    <$link to=""><$view  tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>> field="title"><$view field="title"/></$view></$link>
 </$reveal>
-<$reveal state=<<parentappend "$:/temp/priv/">> text={{!!title}} type="nomatch">
-    <$link><$view  tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>> field="title"><$view field="title"/></$view></$link>
+<$reveal state=<<parentappend "$:/temp/priv/">> text=<<appendtoparent>> type="nomatch">
+    <$link to=<<appendtoparent>> ><$view  tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>> field="title"><$view field="title"/></$view></$link>
 </$reveal>
 </$linkcatcher>
 </div>
-<$reveal state=<<parentappend "$:/temp/priv/">> text={{!!title}} type="match">
+<$reveal state=<<parentappend "$:/temp/priv/">> text=<<appendtoparent>> type="match">
     <$transclude tiddler=<<parentTiddler>> subtiddler=<<currentTiddler>>mode="block"/>
 </$reveal>
